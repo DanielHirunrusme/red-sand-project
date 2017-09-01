@@ -39,24 +39,51 @@
 			
 		</div>
 		<!-- /title-screen -->
+		
+		<!-- lat-long -->
+		<div id="lat-long">
+			<span class="latitude">+32.4498893</span>
+			<span class="longitude">-114.6137032</span>
+		</div>
+		<!-- /lat-long -->
+		
+		<!-- photo-credit -->
+		<div id="photo-credit">
+			<span class="photo-credit-label">Photo Credit: </span><span class="photo-credit-name">Jane Doe</span>
+		</div>
+		<!-- /photo-credit -->
+		
+		<!-- rsp-line -->
+		<div id="rsp-line">
+			<img src="<?php echo get_template_directory_uri(); ?>/img/RSP_Line.svg" alt="Logo" class="line-img">
+		</div>
+		<!-- /rsp-line -->
 
 		<!-- wrapper -->
 		<div class="wrapper">
 			
-			<!-- logo -->
-			<div class="nav-logo">
-				<a href="<?php echo home_url(); ?>">
-					<!-- svg logo - toddmotto.com/mastering-svg-use-for-a-retina-web-fallbacks-with-png-script -->
-					<img src="<?php echo get_template_directory_uri(); ?>/img/RSP_Logo.svg" alt="Logo" class="logo-img">
-				</a>
-			</div>
+			<!-- left-panel -->
+			<section id="left-panel">
+			
+				<!-- logo -->
+				<div class="nav-logo">
+					<a href="<?php echo home_url(); ?>">
+						<!-- svg logo - toddmotto.com/mastering-svg-use-for-a-retina-web-fallbacks-with-png-script -->
+						<img src="<?php echo get_template_directory_uri(); ?>/img/RSP_Logo.svg" alt="Logo" class="logo-img">
+					</a>
+				</div>
 				
-			<!-- nav -->
-			<nav class="nav" role="navigation">
-				<?php rsp_nav(); ?>
-			</nav>
-			<!-- /nav -->
+				<!-- nav -->
+				<nav class="nav" role="navigation">
+					<?php rsp_nav(); ?>
+				</nav>
+				<!-- /nav -->
+				
+				<a class="cart-link" href="/cart">
+					<span class="cart-title">Cart</span><span class="cart-count">(0)</span>
+				</a>
 			
-			<!-- LOAD THE CONTENT IN HERE -->
+				<!-- LOAD THE CONTENT IN HERE -->
 
-			
+			</section>
+			<!-- /left-panel -->
