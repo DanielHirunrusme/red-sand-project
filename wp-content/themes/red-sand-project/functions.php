@@ -63,12 +63,12 @@ if (function_exists('add_theme_support'))
 \*------------------------------------*/
 
 // HTML5 Blank navigation
-function html5blank_nav()
+function rsp_nav()
 {
 	wp_nav_menu(
 	array(
 		'theme_location'  => 'header-menu',
-		'menu'            => '',
+		'menu'            => 'primary',
 		'container'       => 'div',
 		'container_class' => 'menu-{menu slug}-container',
 		'container_id'    => '',
@@ -121,7 +121,7 @@ function html5blank_styles()
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
 
-    wp_register_style('html5blank', get_template_directory_uri() . '/assets/main.min.css', array(), '1.0', 'all');
+    wp_register_style('rsp_css', get_template_directory_uri() . '/assets/main.min.css', array(), '1.0', 'all');
     wp_enqueue_style('rsp_css'); // Enqueue it!
 }
 
@@ -419,6 +419,7 @@ function create_post_type_html5()
             'not_found' => __('No Prints Posts found', 'posts'),
             'not_found_in_trash' => __('No Prints Posts found in Trash', 'posts')
         ),
+        'menu_icon' => 'dashicons-images-alt2',
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
@@ -456,6 +457,42 @@ function create_post_type_html5()
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
+        'menu_icon' => 'dashicons-groups',
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail'
+        ), // Go to Dashboard Custom HTML5 Blank post for supports
+        'can_export' => true, // Allows export in Tools > Export
+        'taxonomies' => array(
+            'post_tag',
+            'category'
+        ) // Add Category and Post Tags support
+    ));
+
+    register_taxonomy_for_object_type('category', 'learn'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('user_tag', 'learn');
+    register_post_type('learn', // Register Custom Post Type
+        array(
+        'labels' => array(
+            'name' => __('Learn', 'learn'), // Rename these to suit
+            'singular_name' => __('Learn', 'learn'),
+            'add_new' => __('Add New', 'learn'),
+            'add_new_item' => __('Add New Learn Post', 'learn'),
+            'edit' => __('Edit', 'learn'),
+            'edit_item' => __('Edit Learn Post', 'learn'),
+            'new_item' => __('New Learn Post', 'learn'),
+            'view' => __('View Learn Post', 'learn'),
+            'view_item' => __('View Learn Post', 'learn'),
+            'search_items' => __('Search Learn Post', 'wposts'),
+            'not_found' => __('No Learn Posts found', 'posts'),
+            'not_found_in_trash' => __('No Learn Posts found in Trash', 'posts')
+        ),
+        'public' => true,
+        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'has_archive' => true,
+        'menu_icon' => 'dashicons-welcome-learn-more',
         'supports' => array(
             'title',
             'editor',
