@@ -1,0 +1,45 @@
+{
+  "name": "red-sand-project",
+  "version": "1.0.0",
+  "description": "Wordpress theme for Red Sand Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DanielHirunrusme/red-sand-project.git"
+  },
+  "author": "Daniel Hirunrusme <daniel@halfhalf.us>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielHirunrusme/red-sand-project/issues"
+  },
+  "homepage": "https://github.com/DanielHirunrusme/red-sand-project#readme",
+  "dependencies": {
+	   "barba.js": "^0.0.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-newer": "^1.1.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-util": "^3.0.7",
+    "watchify": "^3.7.0 ",
+    "minifyify":"^7.3.3",
+    "tumblr.js": "1.0.0",
+    "barba.js": "^0.0.10"
+  },
+  "browserify-shim": {
+
+  }
+}

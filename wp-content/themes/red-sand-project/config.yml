@@ -1,0 +1,13 @@
+development:
+  store: "all-in-magazine.myshopify.com"
+  theme_id: 178661972
+  password: c8c0df0ff1d8882d8ac45328fc890f4b
+  api_key: 31ff55ea3547ec9476f2cf34e3d019d8
+  bucket_size: 40
+  refill_rate: 2
+  concurrency: 2
+  ignore_files:
+  - .git/*
+  - src/*
+  - node_modules/*
+  - .gitignore
