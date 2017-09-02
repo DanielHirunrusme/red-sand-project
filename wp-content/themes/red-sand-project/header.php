@@ -23,7 +23,7 @@
         </script>
 
 	</head>
-	<body <?php body_class(); ?>>
+	<body <?php body_class(); ?> data-module-init="body">
 		
 		<!-- title-screen -->
 		<div class="title-screen">
@@ -80,10 +80,12 @@
 				<!-- /nav -->
 				
 				<a class="cart-link" href="/cart">
-					<span class="cart-title">Cart</span><span class="cart-count">(0)</span>
+					<span class="cart-title">Cart </span><span class="cart-count">(0)</span>
 				</a>
 			
 				<!-- LOAD THE CONTENT IN HERE -->
+				
+				<?php get_template_part('templates/content-left'); ?>
 
 			</section>
 			<!-- /left-panel -->

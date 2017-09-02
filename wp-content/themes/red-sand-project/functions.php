@@ -97,11 +97,23 @@ function html5blank_header_scripts()
 
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
+		
+        wp_register_script('jquery_321', get_template_directory_uri() . '/js/lib/jquery-3.2.1.min.js', array(), '3.2.1'); // jQuery
+        wp_enqueue_script('jquery_321'); // Enqueue it!
+		
+        wp_register_script('rspvendorscripts', get_template_directory_uri() . '/assets/vendor.min.js', array('jquery_321'), '1.0.0'); // Custom scripts
+        wp_enqueue_script('rspvendorscripts'); // Enqueue it!
 
-        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
-        wp_enqueue_script('html5blankscripts'); // Enqueue it!
+        wp_register_script('rspscripts', get_template_directory_uri() . '/assets/main.min.js', array('jquery_321'), '1.0.0'); // Custom scripts
+        wp_enqueue_script('rspscripts'); // Enqueue it!
     }
 }
+
+
+function wpdocs_dequeue_script() {
+        wp_dequeue_script( 'jquery' ); 
+} 
+add_action( 'wp_print_scripts', 'wpdocs_dequeue_script', 100 );
 
 // Load HTML5 Blank conditional scripts
 function html5blank_conditional_scripts()
@@ -420,6 +432,7 @@ function create_post_type_html5()
             'not_found_in_trash' => __('No Prints Posts found in Trash', 'posts')
         ),
         'menu_icon' => 'dashicons-images-alt2',
+		'show_in_nav_menus' => true,
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
@@ -455,6 +468,7 @@ function create_post_type_html5()
             'not_found_in_trash' => __('No Participants Posts found in Trash', 'posts')
         ),
         'public' => true,
+		'show_in_nav_menus' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
         'menu_icon' => 'dashicons-groups',
@@ -490,6 +504,7 @@ function create_post_type_html5()
             'not_found_in_trash' => __('No Learn Posts found in Trash', 'posts')
         ),
         'public' => true,
+		'show_in_nav_menus' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
         'menu_icon' => 'dashicons-welcome-learn-more',
