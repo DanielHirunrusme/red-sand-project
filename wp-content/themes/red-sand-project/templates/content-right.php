@@ -22,14 +22,14 @@
 							setup_postdata($post); 
 							?>
 							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">
-		
+								<div class="inner-content">
 									<?php if(get_field('hide_title') == 0): ?>
 										<h1><?php the_title(); ?></h1>
 									<?php endif; ?>
 									<div class="page-inner-content">
 										<?php the_content() ?>
 									</div>
-	
+								</div>
 							<?php wp_reset_postdata(); ?>
 							</article>
 							
@@ -43,13 +43,14 @@
 
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
-							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">		
+							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">								<div class="inner-content">
 									<?php if(get_field('hide_title') == 0): ?>
 										<h1><?php the_title(); ?></h1>
 									<?php endif; ?>
 									
 									<div class="page-inner-content">
 										<?php the_content() ?>
+									</div>
 									</div>
 							    </article>
 							<?php wp_reset_postdata(); } ?>
@@ -72,7 +73,7 @@
 							?>
 							
 							<article class="article-content" data-article-id="" data-article-title="">
-								
+								<div class="inner-content">
 								<?php
 									
 									$args = array( 'numberposts' => -1, 'post_type' => $i->object );
@@ -94,7 +95,7 @@
 									wp_reset_postdata(); 
 									
 								?>
-								
+								</div>
 							</article>
 							
 							<?php
