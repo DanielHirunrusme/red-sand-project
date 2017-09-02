@@ -27,9 +27,24 @@
 										<h1><?php the_title(); ?></h1>
 									<?php endif; ?>
 									<div class="page-inner-content">
-										<?php the_content() ?>
+
+										<?php if($image = get_field('featured_image')): ?>
+											<?php
+												
+											$image_size = get_field_object('featured_image_size');
+										
+											$image_size_value = $image_size['value']; 
+											$image_size_value = preg_split("/:/", $image_size_value);
+												
+											?>
+											<img src="<?php echo $image['url']; ?>" class="size-<?= strtolower($image_size_value[0]); ?>" alt="<?php echo $image['alt']; ?>" />
+											
+										<?php endif; ?>
+										
 									</div>
+									<!-- /page-inner-content -->
 								</div>
+								<!-- /inner-content -->
 							<?php wp_reset_postdata(); ?>
 							</article>
 							
@@ -47,11 +62,25 @@
 									<?php if(get_field('hide_title') == 0): ?>
 										<h1><?php the_title(); ?></h1>
 									<?php endif; ?>
-									
 									<div class="page-inner-content">
-										<?php the_content() ?>
+
+										<?php if($image = get_field('featured_image')): ?>
+											<?php
+												
+											$image_size = get_field_object('featured_image_size');
+										
+											$image_size_value = $image_size['value']; 
+											$image_size_value = preg_split("/:/", $image_size_value);
+												
+											?>
+											<img src="<?php echo $image['url']; ?>" class="size-<?= strtolower($image_size_value[0]); ?>" alt="<?php echo $image['alt']; ?>" />
+											
+										<?php endif; ?>
+										
 									</div>
-									</div>
+									<!-- /page-inner-content -->
+								</div>
+								<!-- /inner-content -->
 							    </article>
 							<?php wp_reset_postdata(); } ?>
 							

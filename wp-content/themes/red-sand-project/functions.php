@@ -154,6 +154,26 @@ function my_wp_nav_menu_args($args = '')
     return $args;
 }
 
+// Remove tags support from posts
+function wpse60590_remove_metaboxes() {
+    remove_meta_box( 'categorydiv' , 'prints' , 'normal' ); 
+	remove_meta_box( 'categorydiv' , 'learn' , 'normal' ); 
+	
+	remove_meta_box( 'postexcerpt', 'prints', 'normal' );
+	
+    remove_meta_box( 'tagsdiv-post_tag' , 'prints' , 'normal' ); 
+    remove_meta_box( 'tagsdiv-post_tag' , 'learn' , 'normal' ); 
+
+}
+add_action( 'admin_menu' , 'wpse60590_remove_metaboxes' );
+
+
+// Remove featured image div from select posts 
+function remove_image_box() {
+	remove_meta_box( 'postimagediv', 'prints', 'side' );
+}
+add_action('do_meta_boxes', 'remove_image_box');
+
 // Remove Injected classes, ID's and Page ID's from Navigation <li> items
 function my_css_attributes_filter($var)
 {
@@ -520,6 +540,43 @@ function create_post_type_html5()
             'category'
         ) // Add Category and Post Tags support
     ));
+	
+	
+    register_taxonomy_for_object_type('category', 'rsp_blog'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('user_tag', 'rsp_blog');
+    register_post_type('rsp_blog', // Register Custom Post Type
+        array(
+        'labels' => array(
+            'name' => __('Blog', 'Blog'), // Rename these to suit
+            'singular_name' => __('Blog', 'blog post'),
+            'add_new' => __('Add New', 'blog post'),
+            'add_new_item' => __('Add New Blog Post', 'Blog'),
+            'edit' => __('Edit', 'Blog'),
+            'edit_item' => __('Edit Blog Post', 'rsp_blog'),
+            'new_item' => __('New Blog Post', 'rsp_blog'),
+            'view' => __('View Blog Post', 'rsp_blog'),
+            'view_item' => __('View Blog Post', 'rsp_blog'),
+            'search_items' => __('Search Blog Post', 'wposts'),
+            'not_found' => __('No Blog Posts found', 'posts'),
+            'not_found_in_trash' => __('No Blog Posts found in Trash', 'posts')
+        ),
+        'public' => true,
+		'show_in_nav_menus' => true,
+        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'has_archive' => true,
+        'menu_icon' => 'dashicons-welcome-learn-more',
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail'
+        ), // Go to Dashboard Custom HTML5 Blank post for supports
+        'can_export' => true, // Allows export in Tools > Export
+        'taxonomies' => array(
+            'post_tag',
+            'category'
+        ) // Add Category and Post Tags support
+    ));
 
 }
 
@@ -528,6 +585,13 @@ function remove_menus(){
   
 }
 add_action( 'admin_menu', 'remove_menus' );
+
+function post_remove ()      //creating functions post_remove for removing menu item
+{ 
+   remove_menu_page('edit.php');
+}
+
+add_action('admin_menu', 'post_remove');   //adding action for triggering function call
 
 /*------------------------------------*\
 	ShortCode Functions

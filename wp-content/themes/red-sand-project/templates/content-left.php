@@ -27,7 +27,7 @@
 									
 									<div class="page-inner-content">
 										<?php if(get_field('hide_title') == 0): ?>
-											<h1><?php the_title(); ?></h1>
+											<h1 class="page-title"><?php the_title(); ?></h1>
 										<?php endif; ?>
 										<?php the_content() ?>
 									</div>
@@ -50,7 +50,7 @@
 									
 									<div class="page-inner-content">
 										<?php if(get_field('hide_title') == 0): ?>
-											<h1><?php the_title(); ?></h1>
+											<h1 class="page-title"><?php the_title(); ?></h1>
 										<?php endif; ?>
 										<?php the_content() ?>
 									</div>
@@ -74,7 +74,10 @@
 							
 							?>
 							
-							<article class="article-content" data-article-id="" data-article-title="">
+							<article class="article-content article-<?= $i->object ?>" data-article-id="" data-article-title="">
+								<?php if($i->object == 'prints'): ?>
+									<div class="article-inner-holder">
+								<?php endif; ?>
 								
 								<?php
 									
@@ -84,10 +87,21 @@
 									  setup_postdata($post); 
 									  
 									  ?>
-									  
-  									<h1><?php the_title(); ?></h1>
+									
+									
   									<div class="page-inner-content">
+										<?php if($i->object == 'prints'): ?>
+											
+											<button class="print">
+												<h2><?php the_title() ?></h2>
+												<div class="print-author"><?php the_field('print_author'); ?></div>
+												<div class="print-thumbnail" style="background-image:url(<?php echo get_field('print_image')['url'] ?>)"></div>
+											</button>
+											
+										<?php else: ?>
+										<h1 class="page-title"><?php the_title(); ?></h1>
   										<?php the_content() ?>
+										<?php endif; ?>
   									</div>
 									  
 									  
@@ -98,6 +112,11 @@
 									
 								?>
 								
+								<?php if($i->object == 'prints'): ?>
+								</div>
+								<!-- /article-inner-holder -->
+								<?php endif; ?>
+									
 							</article>
 							
 							<?php
