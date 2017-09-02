@@ -23,9 +23,7 @@
 							?>
 							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">
 								<div class="inner-content">
-									<?php if(get_field('hide_title') == 0): ?>
-										<h1><?php the_title(); ?></h1>
-									<?php endif; ?>
+									
 									<div class="page-inner-content">
 
 										<?php if($image = get_field('featured_image')): ?>
@@ -59,9 +57,7 @@
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
 							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">								<div class="inner-content">
-									<?php if(get_field('hide_title') == 0): ?>
-										<h1><?php the_title(); ?></h1>
-									<?php endif; ?>
+							
 									<div class="page-inner-content">
 
 										<?php if($image = get_field('featured_image')): ?>
@@ -112,9 +108,9 @@
 									  
 									  ?>
 									  
-  									<h1><?php the_title(); ?></h1>
+  									
   									<div class="page-inner-content">
-  										<?php the_content() ?>
+  										<?php //the_content() ?>
   									</div>
 									  
 									  
