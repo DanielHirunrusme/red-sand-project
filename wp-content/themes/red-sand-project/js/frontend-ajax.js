@@ -25,6 +25,7 @@ jQuery(document).ready(function($){
 						var newCount = parseInt($('.cart-count').html(), 10) + parseInt(quantity, 10);
 		
 						$('.cart-count').html( newCount );
+						$('.cart-link').removeClass('disabled');
                         //$('.cart-dropdown-inner').html(results);
                     }
                });

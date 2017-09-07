@@ -295,7 +295,7 @@ input:focus, input:hover, input.over {
 
 ::selection {
     color: black;
-    background: #fff;
+    background: $c-theme;
 }
 
 .break-mobile {

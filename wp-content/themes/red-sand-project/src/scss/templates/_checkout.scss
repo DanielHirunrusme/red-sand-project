@@ -1,0 +1,29 @@
+#checkout {
+	
+	position:absolute;
+	left:0;
+	top:0;
+	width:100vw;
+	height:100%;
+	background:$c-white;
+	z-index:1;
+	
+	.inner-checkout-container {
+		
+		margin-left:$left-panel-width-desktop;
+		background:$c-white;
+		height:100%;
+		overflow-y:scroll;
+		//@include flexbox;
+		//@include align-content(center);
+		border-left:2px solid $c-theme;
+		
+		.woocommerce {
+			
+			margin:40px;
+			
+		}
+		
+	}
+
+}

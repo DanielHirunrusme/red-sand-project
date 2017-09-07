@@ -7,7 +7,7 @@
 	right:0;
 	z-index:999;
 	
-	.cart-open & {
+	.cart-open &, .checkout & {
 		display:none;
 	}
 	

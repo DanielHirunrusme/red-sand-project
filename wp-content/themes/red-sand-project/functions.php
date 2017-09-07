@@ -537,12 +537,12 @@ function my_wc_add_cart_ajax() {
 				<h6>Shipping</h6>
 				<div class="shipping-options">
 					<div>
-						<input type="radio" name="shipping[]" />
-						<label>Free Shipping (pending approval)</label>
+						<input id="free-shipping" type="radio" name="shipping[]" />
+						<label for="free-shipping">Free Shipping (pending approval)</label>
 					</div>
 					<div>
-						<input type="radio" name="shipping[]" />
-						<label>US Shipping cost</label>
+						<input id="us-shipping" type="radio" name="shipping[]" />
+						<label for="us-shipping">US Shipping cost</label>
 					</div>
 				</div>
 				
@@ -552,7 +552,7 @@ function my_wc_add_cart_ajax() {
 			<!-- cart-actions-->
 			<div class="cart-actions">
 				<a href="/update/" class="global-btn update-cart">Update Cart</a>
-				<a href="/checkout/" class="global-btn checkout">Process to Checkout</a>
+				<a href="/checkout/" class="global-btn checkout">Proceed to Checkout</a>
 			</div>
 			<!-- /cart-actions-->
 			

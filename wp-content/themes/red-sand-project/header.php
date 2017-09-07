@@ -86,7 +86,7 @@
 				</nav>
 				<!-- /nav -->
 				
-				<a class="cart-customlocation cart-link" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><span class="cart-title">Cart </span>(<span class="cart-count"><?php echo WC()->cart->get_cart_contents_count()  ?></span>) <?php //echo WC()->cart->get_cart_total(); ?></a>
+				<a class="cart-customlocation cart-link <?php if(WC()->cart->get_cart_contents_count() == 0): ?>disabled<?php endif; ?>" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><span class="cart-title">Cart </span>(<span class="cart-count"><?php echo WC()->cart->get_cart_contents_count()  ?></span>) <?php //echo WC()->cart->get_cart_total(); ?></a>
 				
 				<!--
 				<a class="cart-link" href="/cart">

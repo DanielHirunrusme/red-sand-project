@@ -59,7 +59,7 @@
 			<!-- cart-actions-->
 			<div class="cart-actions">
 				<button class="global-btn update-cart">Update Cart</button>
-				<button class="global-btn checkout">Process to Checkout</button>
+				<button class="global-btn checkout">Proceed to Checkout</button>
 			</div>
 			<!-- /cart-actions-->
 			
