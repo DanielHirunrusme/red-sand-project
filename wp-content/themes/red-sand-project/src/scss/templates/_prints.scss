@@ -1,5 +1,7 @@
 #left-panel {
 	
+	
+	
 	.article-prints {
 	
 		@include flexbox;
@@ -56,6 +58,29 @@
 
 }
 	
+#right-panel {
+	
+	article[data-page="prints"] {
+		
+		.page-inner-content {
+			
+			@extend %bg-image;
+			position:absolute;
+			left:0;
+			top:0;
+			display:none !important;
+			
+			&.active {
+				
+				display:block !important;
+				
+			}
+			//width:calc(100vw - ($g-lr-margin * 7))
+		}
+	
+	}
+
+}
 
 
 

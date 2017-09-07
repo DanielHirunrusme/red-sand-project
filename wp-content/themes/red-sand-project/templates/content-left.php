@@ -74,7 +74,7 @@
 							
 							?>
 							
-							<article class="article-content article-<?= $i->object ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+							<article class="article-content article-<?= $i->object ?>" <?php if($i->object == 'prints'): ?>data-module-init="prints"<?php endif; ?> data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 								<?php if($i->object == 'prints'): ?>
 									<div class="article-inner-holder">
 								<?php endif; ?>
@@ -95,7 +95,7 @@
 											<button class="print">
 												<h2><?php the_title() ?></h2>
 												<div class="print-author"><?php the_field('print_author'); ?></div>
-												<div class="print-thumbnail" style="background-image:url(<?php echo get_field('print_image')['url'] ?>)"></div>
+												<div class="print-thumbnail" data-bg="<?php echo get_field('print_image')['url'] ?>" style="background-image:url(<?php echo get_field('print_image')['url'] ?>)"></div>
 											</button>
 											
 										<?php else: ?>

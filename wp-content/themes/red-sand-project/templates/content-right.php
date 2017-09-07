@@ -100,7 +100,7 @@
 							
 							?>
 							
-							<article class="article-content" data-article-id="" data-article-title="">
+							<article class="article-content" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 								<div class="inner-content">
 								<?php
 									
