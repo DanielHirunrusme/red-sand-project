@@ -100,6 +100,24 @@ var scrollContainers = module.exports = {
 				
 			});
 			
+			$('#left-panel .article-content').each(function(){
+				
+				$el = $(this);
+				$container = $('#right-panel .article-content[data-page="'+ $el.data('page') +'"]');
+				
+				console.log($container);
+				//if container height is larger than window, then size right panel proportionally
+				if( $el.height() > $(window).height() ) {
+					
+					var percentage = $el.height()/$(window).height();
+					console.log('article % ' + percentage);
+					$container.css('width', $(window).width() * percentage );
+					
+					
+				}
+				
+			});
+			
 		},
 		
 		setRightPanel: function(){

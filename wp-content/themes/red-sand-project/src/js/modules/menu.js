@@ -21,7 +21,7 @@ var menu = module.exports = {
 	          // here can cause data loading, etc.
 
 	          // just post
-			   //console.log(location)
+			    console.log(location.href)
 				settings.isScrolling = true;
 				
 				if(location.href != '/'){
@@ -63,13 +63,19 @@ var menu = module.exports = {
 			
 			console.log($targ.attr('href'));
 			
-			//HTMLhistory.pushState(null, null, $targ.attr('href'));
+			HTMLhistory.pushState(null, null, $targ.attr('href'));
 		},
 		
 		setCurrentMenuItem: function(pageName) {
-			$('.menu-item a').removeClass('active');
-			$('.menu-item a[data-page="'+ pageName +'"]').addClass('active');
-			HTMLhistory.pushState(null, null, $('.menu-item a[data-page="'+ pageName +'"]').attr('href'));
+			if(!$('.menu-item a[data-page="'+ pageName +'"]').hasClass('active')) {
+				$('.menu-item a').removeClass('active');
+				$('.menu-item a[data-page="'+ pageName +'"]').addClass('active');
+				if(!settings.isScrolling){
+					console.log('pushState')
+					HTMLhistory.pushState(null, null, $('.menu-item a[data-page="'+ pageName +'"]').attr('href'));
+				}
+			}
+			
 		},
 		
 		scrollListenMenus: function(){
