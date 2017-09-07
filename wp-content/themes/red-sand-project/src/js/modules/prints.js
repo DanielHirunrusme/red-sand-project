@@ -13,6 +13,8 @@ module.exports = function( el ) {
 			setPrints();
 			setPrintContainers();
 			
+			$(window).on('resize', winPrintsResize);
+			
 			$('.print').on('mouseover', printButtonOver).on('mouseout', printButtonOut).on('click', printButtonClick)
 		}
 		
@@ -43,6 +45,19 @@ module.exports = function( el ) {
 			var targ = $(e.currentTarget);
 			
 			$('body').toggleClass('print-full-bleed');
+			
+			if($('body').hasClass('print-full-bleed')){
+				scrollContainers.scrollTo('prints');
+				$('#left-panel .main, #right-panel .main').on('scroll', printScroll);
+				
+			} else {
+				$('#left-panel .main, #right-panel .main').off('scroll', printScroll);
+			}
+		}
+		
+		function printScroll(){
+			$('#left-panel .main, #right-panel .main').off('scroll', printScroll);
+			closeClickPrint();
 		}
 		
 		function closeClickPrint(){
@@ -67,6 +82,10 @@ module.exports = function( el ) {
 				$(this).css('width', $(window).width() - $('#left-panel').width());
 			})
 			
+		}
+		
+		function winPrintsResize(){
+			setPrintContainers()
 		}
 		
 };

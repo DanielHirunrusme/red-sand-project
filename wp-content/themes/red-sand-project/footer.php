@@ -1,7 +1,9 @@
-
+		<?php get_template_part('templates/cart'); ?>
 
 		</div>
 		<!-- /wrapper -->
+		
+		
 
 		<?php //wp_footer(); ?>
 

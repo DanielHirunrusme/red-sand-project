@@ -1,5 +1,6 @@
 var settings = require( "modules/settings" ),
 	scrollContainers = require("modules/scrollContainers"),
+	cart = require("modules/cart"),
 	menu = require("modules/menu");
 
 	
@@ -15,6 +16,7 @@ module.exports = function( el ) {
 			
 			//barba.init();
 			scrollContainers.init();
+			cart.init();
 			menu.init();
 			
 			$window.on('resize', winResize);

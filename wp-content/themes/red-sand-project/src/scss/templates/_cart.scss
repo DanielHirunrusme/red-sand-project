@@ -5,5 +5,41 @@
 	right:3.36vw;
 	margin:0 0 40px 0;
 	z-index:4;
+	
+	.cart-open & {
+			
+		* {
+			
+			color:$c-theme;
+			
+		}
+	}
+}
+
+#cart {
+	
+	@include transition(transition, transform .4s);
+	@include transform(translate(100vw, 0));
+	width:100vw;
+	position:absolute;
+	height:100%;
+	left:0;
+	top:0;
+	
+	z-index:1;
+	
+	.cart-open & {
+		
+		@include transform(translate(0vw, 0));
+	
+	}
+	
+	.inner-cart-container {
+		
+		margin-left:$left-panel-width-desktop;
+		background:$c-white;
+		min-height:100%;
+		
+	}
 
 }

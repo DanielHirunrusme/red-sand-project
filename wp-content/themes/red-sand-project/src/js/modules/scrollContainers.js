@@ -13,6 +13,8 @@ var scrollContainers = module.exports = {
 			scrollContainers.setRightPanel();
 			scrollContainers.setLine();
 			
+			$(window).on('resize', scrollContainers.winResize);
+			
 			//console.log('scrollContainers init');
 			
 			$(window).on('mousewheel', function(e){
@@ -164,10 +166,25 @@ var scrollContainers = module.exports = {
 		},
 		
 		scrollTo: function(pageName){
+			settings.page.current = pageName;
 			var $targL = scrollContainers.$leftScrollPanel.find('article[data-page="'+ pageName +'"]')
 			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targL.position().top}, 400, function(){
 				settings.isScrolling = false;
 			});
+		},
+		
+		
+		winResize: function(){
+			scrollContainers.sizeRightContainers();
+			scrollContainers.setRightPanel();
+			scrollContainers.setLine();
+			
+			var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().top;
+			scrollContainers.$leftScrollPanel.stop().scrollTop(st);
+			
+			var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().left;
+			$('#left-panel .main').trigger('scroll')
+			//scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
 		}
 };
   
