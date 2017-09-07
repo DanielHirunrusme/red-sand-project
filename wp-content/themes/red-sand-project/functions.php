@@ -518,7 +518,11 @@ function my_wc_add_cart_ajax() {
 					<div class="product-span"><?php echo $_product->post_title; ?></div>
 					<div class="price-span">$0.00</div>
 					<div class="quantity-span">
-						<?php echo $values['quantity']; ?>
+						<div class="qty-container">
+							<input class="plus" type="button" value="-">
+							<input name="qty" class="qty" value="<?php echo $values['quantity']; ?>">
+							<input class="plus" type="button" value="+">
+						</div>
 					</div>
 					<div class="total-span"><?php echo get_post_meta($values['product_id'] , '_price', true); ?></div>
 				</div>
@@ -547,8 +551,8 @@ function my_wc_add_cart_ajax() {
 			
 			<!-- cart-actions-->
 			<div class="cart-actions">
-				<button class="global-btn update-cart">Update Cart</button>
-				<button class="global-btn checkout">Process to Checkout</button>
+				<a href="/update/" class="global-btn update-cart">Update Cart</a>
+				<a href="/checkout/" class="global-btn checkout">Process to Checkout</a>
 			</div>
 			<!-- /cart-actions-->
 			

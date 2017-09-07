@@ -124,6 +124,7 @@
 				
 				&.qty {
 					
+					@extend %globalText;
 					width:50%;
 					border-left:none;
 					border-right:none;

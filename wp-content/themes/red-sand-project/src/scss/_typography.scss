@@ -323,3 +323,61 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+label {
+	
+	&:hover {
+		
+		text-decoration:none;
+		border:none;
+	
+	}
+
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 1.5em;
+    cursor: pointer;
+    display: inline-block;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .05em;
+    width: 1em;
+    height: 1em;
+    border: 1px solid $c-theme;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+	content: '';
+    width: 1em;
+    height: 1em;
+    background: $c-theme;
+    position: absolute;
+    top: .05em;
+    left: 0;
+    border-radius: 100%;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}

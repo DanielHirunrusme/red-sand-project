@@ -16,10 +16,15 @@ jQuery(document).ready(function($){
                     url: frontend_ajax_object.ajaxurl,
                     type:'POST',
                     data:'action=my_wc_add_cart&product_id=' + product_id + '&quantity='+ quantity,
-
+			
                     success:function(results) {
+						console.log(results)
 						$('#cart').html(results);
 						$('body').addClass('cart-open');
+						
+						var newCount = parseInt($('.cart-count').html(), 10) + parseInt(quantity, 10);
+		
+						$('.cart-count').html( newCount );
                         //$('.cart-dropdown-inner').html(results);
                     }
                });

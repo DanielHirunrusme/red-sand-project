@@ -76,6 +76,42 @@
 			
 			}
 			
+			.cart-item {
+				
+				.quantity-span {
+					
+					
+					
+					.qty-container {
+						
+						width:50%;
+						min-width:115px;
+						@include flexbox;
+						
+					
+					}
+					
+					.qty, .plus, .minus {
+					
+						border:none;
+						background:none;
+						color:$c-black;
+						width:25%;
+				
+					}
+					
+					.qty {
+						
+						text-align:center;
+						width:50%;
+					
+					}
+				
+				}
+				
+			
+			}
+			
 			.cart-headers, .cart-item {
 				
 				@include flexbox;
@@ -111,6 +147,15 @@
 					margin-bottom:15px;
 				
 				}
+				
+				.shipping-options {
+					
+					div {
+						margin-bottom:.5em;
+					}
+					
+				
+				}
 			
 			}
 			
@@ -120,10 +165,11 @@
 				@include flex-direction(column);
 				width:$g-lr-margin * 4;
 				
-				button {
+				.global-btn {
 					
 					display:block;
 					margin-bottom:10px;
+					
 					
 					&.update-cart {
 						
