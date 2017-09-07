@@ -27,8 +27,7 @@ $g-lr-margin:3.36vw;
 $g-tb-margin:3.33vh;
 $g-gutter:.859vw;
 
-$left-panel-width-desktop:20vw;
-
+$left-panel-width-desktop:($g-lr-margin * 7) - $g-gutter;
 
 $g-mobile-lr-margin:6vw;
 $g-mobile-tb-margin:3vh;

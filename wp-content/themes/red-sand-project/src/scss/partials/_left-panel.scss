@@ -1,8 +1,9 @@
 #left-panel {
 
-	
+	@include transition(transition, transform .2s);
+	  
 	position:absolute;
-	width:($g-lr-margin * 7) - $g-gutter;
+	width:$left-panel-width-desktop;
 	//width:$g-lr-margin * 8;
 	//width:50vw;
 	height:100%;
@@ -12,7 +13,12 @@
 	background:$c-white;
 	background:rgba(255, 255, 255, .95);
 	z-index:2;
-	//min-width:300px;
+	
+	.print-full-bleed & {
+		
+		@include transform(translate(-$left-panel-width-desktop, 0));
+	
+	}
 	
 	.main {
 		
@@ -34,6 +40,4 @@
 			margin-bottom:50vh;
 		}
 	}
-	
-
 }

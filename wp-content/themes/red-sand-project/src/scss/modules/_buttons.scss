@@ -1,0 +1,33 @@
+button {
+	
+	border-radius:none;
+	outline:none;
+	border:none;
+	
+	&:hover, &:active, &:focus {
+	
+		outline:none;
+	
+	}
+
+}
+
+.close-button {
+	
+	position:absolute;
+	z-index:99999;
+	right:$g-lr-margin;
+	top:$g-tb-margin;
+	width:22px;
+	height:22px;
+	display:none;
+	
+	.print-full-bleed & {
+	
+		display:block;
+	
+	}
+	
+	img, svg { width:100%; }
+
+}

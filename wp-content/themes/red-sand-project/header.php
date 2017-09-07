@@ -59,6 +59,12 @@
 			
 		</div>
 		<!-- /rsp-line -->
+		
+		<!-- close-button -->
+		<button class="close-button">
+			<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.16 5.16"><defs><style>.cls-1{fill:#c92a2f;}</style></defs><title>Untitled-1</title><polygon class="cls-1" points="3.99 0 2.66 1.95 2.64 1.95 1.27 0 0.21 0 2.04 2.44 0 5.16 1.03 5.16 2.56 3.03 2.58 3.03 4.1 5.16 5.16 5.16 3.19 2.54 5.04 0 3.99 0"/></svg>
+		</button>
+		<!-- /close-button -->
 
 		<!-- wrapper -->
 		<div class="wrapper">
