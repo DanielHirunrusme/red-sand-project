@@ -13,7 +13,7 @@ var scrollContainers = module.exports = {
 			scrollContainers.setRightPanel();
 			scrollContainers.setLine();
 			
-			console.log('scrollContainers init');
+			//console.log('scrollContainers init');
 			
 			$(window).on('mousewheel', function(e){
 				
@@ -48,7 +48,7 @@ var scrollContainers = module.exports = {
 				// - $(window).width() - $(window).height() + $('#left-panel').width()/2
 			    var percentage = $('#left-panel .main').scrollTop() / ($('#left-panel .main')[0].scrollHeight - $('#left-panel .main')[0].offsetHeight );
 			    var percent = $(window).width()/$(window).height()
-				console.log(percent)
+				//console.log(percent)
 				other.scrollLeft = percent * $('#left-panel .main').scrollTop()
 			    // Firefox workaround. Rebinding without delay isn't enough.
 			    //setTimeout( function(){ $other.on('scroll', sync ); },10);
@@ -67,11 +67,7 @@ var scrollContainers = module.exports = {
 			}).on('mouseout', function(){
 				$('#left-panel .main').off( 'scroll', syncRight);
 			});
-			
-			
-			
-			
-			
+				
 			
 		},
 		
@@ -84,8 +80,8 @@ var scrollContainers = module.exports = {
 		
 		sizeRightContainers: function(){
 			
-			console.log( 'l-panel article count: ' + $('#left-panel article').length );
-			console.log( 'r-panel article count: ' + $('#right-panel article').length );
+			//console.log( 'l-panel article count: ' + $('#left-panel article').length );
+			//console.log( 'r-panel article count: ' + $('#right-panel article').length );
 			
 			$('#left-panel .page-content').each(function(){
 				
@@ -96,7 +92,7 @@ var scrollContainers = module.exports = {
 				if( $el.height() > $(window).height() ) {
 					
 					var percentage = $el.height()/$(window).height();
-					console.log(percentage);
+					//console.log(percentage);
 					$container.css('width', $(window).width() * percentage );
 					
 					
@@ -133,9 +129,9 @@ var scrollContainers = module.exports = {
 		
 		moveLine: function(){
 			
-			console.log('moveline ')
+			//console.log('moveline ')
 			var x = -$('#right-panel .main').scrollLeft();
-			console.log(x);
+			//console.log(x);
 			
 		    var percentage = $('#right-panel .main').scrollLeft() / ($('#right-panel .main')[0].scrollWidth - $('#right-panel .main')[0].offsetWidth);
 		    x = -(percentage * ($('.line-img').width() - $('#right-panel .page-inner-content').width()) );
@@ -150,8 +146,8 @@ var scrollContainers = module.exports = {
 		},
 		
 		scrollTo: function(pageName){
-			var $targ = scrollContainers.$leftScrollPanel.find('article[data-page="'+ pageName +'"]')
-			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targ.position().top}, 400, function(){
+			var $targL = scrollContainers.$leftScrollPanel.find('article[data-page="'+ pageName +'"]')
+			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targL.position().top}, 400, function(){
 				settings.isScrolling = false;
 			});
 		}
