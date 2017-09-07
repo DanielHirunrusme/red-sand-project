@@ -79,7 +79,7 @@
 									<div class="article-inner-holder">
 								<?php endif; ?>
 								
-								<?php
+								<?php 
 									
 									$args = array( 'numberposts' => -1, 'post_type' => $i->object );
 									$myposts = get_posts( $args );

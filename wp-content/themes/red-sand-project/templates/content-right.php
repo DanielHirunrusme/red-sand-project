@@ -35,7 +35,7 @@
 											$image_size_value = preg_split("/:/", $image_size_value);
 												
 											?>
-											<img src="<?php echo $image['url']; ?>" class="size-<?= strtolower($image_size_value[0]); ?>" alt="<?php echo $image['alt']; ?>" />
+											<img src="<?php echo $image['url']; ?>" class="size-<?= strtolower($image_size_value[0]); ?>" alt="<?php echo $image['alt']; ?>" /> 
 											
 										<?php endif; ?>
 										

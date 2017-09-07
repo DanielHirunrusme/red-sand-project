@@ -84,7 +84,7 @@ function rsp_nav()
 		'depth'           => 0,
 		'walker'          => ''
 		)
-	);
+	); 
 }
 
 // Load HTML5 Blank scripts (header.php)
