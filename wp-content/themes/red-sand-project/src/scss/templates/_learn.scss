@@ -1,0 +1,14 @@
+.article-learn {
+
+	.page-inner-content {
+	
+		@include flexbox;
+		//@include align-items(center);
+		@include flex-direction(column);
+		@include justify-content(center);
+		text-align:left;
+		min-height:100vh;
+	
+	}
+
+}

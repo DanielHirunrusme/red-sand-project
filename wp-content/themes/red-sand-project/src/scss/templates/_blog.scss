@@ -1,0 +1,21 @@
+#left-panel {
+	
+	.article-rsp_blog {
+		
+		.page-inner-content {
+			min-height:100vh;
+			
+			.page-title {
+				
+				color:$c-theme;
+				margin:0;
+				@extend %maisonBook;
+			
+			}
+	
+		}
+	
+	}
+	
+
+}

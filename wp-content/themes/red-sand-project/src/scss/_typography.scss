@@ -1,0 +1,311 @@
+%universRegular {
+	font-family:'Univers LT 55', Helvetica, Arial, sans-serif;
+}
+
+
+%universBlack {
+	font-family:'Univers LT 55', Helvetica, Arial, sans-serif;
+	font-weight: bold;
+}
+
+
+%maisonBook {
+	
+	font-family:'MaisonNeue-Book', Arial, Helvetica, sans-serif;
+
+}
+
+%maisonDemi {
+	
+	font-family:'MaisonNeue-Demi', Arial, Helvetica, sans-serif;
+	
+}
+
+%globalText {
+	
+	
+	@extend %maisonBook;
+	@include font-size($body-font-sizes); 
+	@include line-height($body-line-height); 
+	//letter-spacing:.01em;
+	color:$c-black;
+	font-weight:normal;
+	
+
+	//letter-spacing: -.005em !important;
+}
+
+
+%smallText {
+	@include font-size($body-small-font-sizes); 
+	@include line-height($body-small-line-height); 
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	@extend %globalText;
+	-webkit-font-smoothing:antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
+	@extend %globalText;
+	word-spacing:initial;
+}
+
+@mixin navHover {
+	
+	color:$c-theme;
+	
+}
+
+%p {
+
+	@include font-size($p-font-sizes); 
+	@include line-height($p-line-height); 
+
+}
+
+%h1 {
+	@include font-size($h1-font-sizes); 
+	@include line-height($body-line-height); 
+	color:$c-theme;
+	//text-transform:uppercase;
+	letter-spacing:-.02em;
+	
+	@include respond-to('mobile'){
+		letter-spacing:-.01em;
+	}
+}
+
+%body-smaller {
+	@include font-size($body-small-font-sizes); 
+	@include line-height($body-small-line-height); 
+}
+
+%h1-smaller {
+	@extend %universRegular;
+	letter-spacing:.01em;
+	@include font-size($h1-small-font-sizes); 
+	@include line-height($h1-small-line-height); 
+	
+	@include respond-to('mobile'){
+		letter-spacing:-.01em;
+	}
+	
+}
+
+%h3 {
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+%h6 {
+	@extend %globalText;
+	@extend %maisonDemi;
+	@include font-size($h6-font-sizes); 
+	@include line-height($h6-line-height); 
+	text-transform:uppercase;
+	letter-spacing:.025em;
+}
+
+%pa {
+	@extend %globalText;
+	@include font-size($h6-font-sizes); 
+	@include line-height($h6-line-height); 
+	text-transform:uppercase;
+	letter-spacing:.025em;
+	
+	&::before {
+		
+	    display: block;
+	    content: ' ';
+	    background-image: url('../img/link-arrow.svg');
+		background-repeat:no-repeat;
+	    background-size: 5px 5px;
+	    height: 5px;
+	    width: 5px;
+	    margin-right: .5em;
+	    position: relative;
+	    display: inline-block;
+	    top: -.25em;
+		
+	}
+  
+}
+
+p {
+	
+	@extend %p;
+	
+}
+
+li {
+	list-style:none;
+}
+
+a {
+	color:$c-black;
+	text-decoration:none;
+	
+	&:hover {
+	   color:$c-theme;
+	}
+	
+	&:focus, &:active {
+		outline:none !important;
+	}
+}
+
+h1, h2 {
+	@extend %h1;
+}
+
+h1, h2{
+	display:inline;
+}
+
+h3 {
+	@extend %h3;
+}
+
+h3 time {
+	@extend %h1;
+}
+
+h6 {
+	@extend %h6;
+}
+
+p {
+	margin-bottom:$g-h-padding !important;
+	
+	@include respond-to(mobile-portrait) {
+		margin-bottom:$g-h-padding * 2 !important;
+	}
+	
+	a {
+		font-weight:normal !important;
+		color:$c-black;
+		
+		&:hover {
+			color:$c-black;
+		}
+	}
+}
+
+p b {
+	@extend %h1;
+	font-weight:normal;
+}
+
+p:empty { display:none; }
+
+a[href^=tel] {
+
+}
+
+input[type="submit"] {
+	line-height:1;
+	border-bottom: 1px solid transparent;
+}
+
+
+/* FORM STYLING */
+
+button {
+	background:none;
+	border:none;
+}
+
+input {
+	color:$c-gray;
+	border-bottom: 1px solid transparent;
+	
+	&:hover {
+	   border-bottom: 1px solid #000;
+	   color:$c-black;
+	}
+}
+
+label {
+	&:hover {
+	   border-bottom: 1px solid #000;
+	   color:$c-black;
+	}
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder  {
+    color:$c-black;
+}
+
+input:-moz-placeholder {
+   color: $c-black;
+}
+
+input::-moz-placeholder {
+   color: $c-black;
+}
+
+input:-ms-input-placeholder {
+   color: $c-black;
+}
+
+
+input:focus, input:hover, input.over {
+	//background:$c-background;
+	//border-color:$c-background;
+	 color:$c-black;
+}
+
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.body-smaller {
+	@extend %body-smaller;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: black;
+    background: #fff;
+}
+
+::selection {
+    color: black;
+    background: #fff;
+}
+
+.break-mobile {
+	@include respond-to(mobile-portrait) {
+		display:block;
+	}
+}
+
+.hide-mobile {
+	@include respond-to(mobile-portrait) {
+		display:none;
+	}
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

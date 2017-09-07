@@ -1,0 +1,93 @@
+.page-content, .article-content {
+	
+	min-height:100%;
+	
+	.article-inner-holder {
+		
+		width:100%;
+		
+	}
+
+}
+
+#left-panel {
+	
+	.page-content, .article-content {
+		
+		h1 {
+		
+			display:block;
+			
+			&.page-title {
+				
+				@extend %maisonDemi;
+				color:$c-black;
+				margin-bottom:2em;
+				
+			
+			}
+			
+		}
+		
+		
+		h2 {
+			
+			color:$c-black;
+			margin-bottom:1.5em;
+			display:block;
+			margin-top:3em;
+		
+		}
+		
+		h1 + h2 {
+		
+			margin-top:0;
+			
+		}
+		
+		h3 {
+			
+			color:$c-theme;
+		
+		}
+		
+		ul {
+		
+			li {
+				
+				&:before {
+					
+					display: inline-block;
+				    content: "—";
+				    width: 1em;
+					margin-right:.5em;
+				    //margin-left: -1em;
+			
+				
+				}
+				
+			}
+		
+		}
+		
+		p {
+		
+			a {
+				
+				@extend %pa;
+				text-transform:uppercase;
+			
+			}
+		
+		}
+	
+	}
+
+	.page-content {
+	
+		@include flexbox;
+		@include align-items(center);
+
+	}
+
+}

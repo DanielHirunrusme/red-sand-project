@@ -1,0 +1,22 @@
+#rsp-line {
+
+	position:fixed;
+	z-index:-1;
+	pointer-events:none;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	left:($g-lr-margin * 7) - $g-gutter;
+	
+	svg {
+		stroke-width: 4px;
+	}
+	
+	img {
+		
+		width:400%;
+		height:200%;
+		
+	}
+
+}

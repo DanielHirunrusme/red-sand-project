@@ -1,0 +1,20 @@
+#left-panel {
+	
+	.article-content.article-community  {
+		
+		.page-inner-content {
+			
+			.page-title {
+				
+				@extend %maisonBook;
+				color:$c-theme;
+				margin:0;
+	
+			}
+			
+		}
+
+	}
+
+}
+

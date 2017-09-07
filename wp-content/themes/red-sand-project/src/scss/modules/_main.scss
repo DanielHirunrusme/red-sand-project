@@ -1,0 +1,12 @@
+.wrapper .main {
+	
+	@include scrollContainer;
+	position:absolute;
+	height:100%;
+	//width:100%;
+	
+	section {
+		margin-left:($g-lr-margin * 7) - $g-gutter;
+	}
+
+}

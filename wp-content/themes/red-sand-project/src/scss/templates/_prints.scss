@@ -1,0 +1,62 @@
+#left-panel {
+	
+	.article-prints {
+	
+		@include flexbox;
+		@include flex-wrap(wrap);
+		@include align-items(center);
+	
+	
+		.article-inner-holder {
+			@include flexbox;
+			@include flex-wrap(wrap);
+			@include align-items(center);
+			margin-left:-6px;
+		}
+	
+		.page-inner-content {
+		
+			@include flexbox;
+			@include flex-direction(column);
+			width:50%;
+			text-align:left;
+			margin-bottom:0;
+		
+			.print {
+			
+				text-align:left;
+				margin:0 0 0 6px;
+			
+			
+				h2 {
+					
+					margin:0;
+					color:$c-theme;
+				
+				}
+			
+				.print-thumbnail {
+				
+					width:100%;
+					height:4em;
+					background-size:cover;
+					background-position:center center;
+					margin-bottom:15px;
+					margin-top:2px;
+				
+	
+				}
+	
+			}
+		
+	 
+		}
+
+	}
+
+}
+	
+
+
+
+

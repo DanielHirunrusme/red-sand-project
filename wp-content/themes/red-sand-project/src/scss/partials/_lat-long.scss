@@ -1,0 +1,18 @@
+#lat-long {
+
+	position:fixed;
+	margin:0 40px 40px 0;
+	color:$c-theme;
+	bottom:0;
+	right:0;
+	z-index:999;
+	
+	span {
+		
+		@extend %h6;
+		display:block;
+		color:$c-theme;
+		
+	}
+
+}

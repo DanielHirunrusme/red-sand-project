@@ -1,0 +1,14 @@
+#photo-credit {
+	
+	position:fixed;
+	top:0;
+	right:0;
+	margin:40px 40px 0 0;
+	
+	span {
+		
+		@extend %h6;
+		
+	}
+
+}
