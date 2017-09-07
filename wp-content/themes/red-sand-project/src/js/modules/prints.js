@@ -14,7 +14,7 @@ module.exports = function( el ) {
 			setPrintContainers();
 			
 			$(window).on('resize', winPrintsResize);
-			
+			$('.close-button').on('click', closeClickPrint);
 			$('.print').on('mouseover', printButtonOver).on('mouseout', printButtonOut).on('click', printButtonClick)
 		}
 		
@@ -38,7 +38,7 @@ module.exports = function( el ) {
 			
 			scrollContainers.scrollTo('prints');
 			
-			$('.close-button').on('click', closeClickPrint);
+			
 		}
 		
 		function printContainerClick(e) {
@@ -63,7 +63,7 @@ module.exports = function( el ) {
 		function closeClickPrint(){
 			
 			$('body').removeClass('print-full-bleed');
-			$('.close-button').off('click', closeClickPrint);
+			//$('.close-button').off('click', closeClickPrint);
 			
 		}
 		

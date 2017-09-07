@@ -114,6 +114,8 @@ function html5blank_header_scripts()
 
         wp_register_script('rspscripts', get_template_directory_uri() . '/assets/main.min.js', array('jquery_321'), '1.0.0'); // Custom scripts
         wp_enqueue_script('rspscripts'); // Enqueue it!
+		
+		rsp_enqueue_scripts();
     }
 }
 
@@ -379,6 +381,204 @@ function html5blankcomments($comment, $args, $depth)
 <?php }
 
 /*------------------------------------*\
+	WooCommerce Custom Scripts
+\*------------------------------------*/
+
+// Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php).
+// Used in conjunction with https://gist.github.com/DanielSantoro/1d0dc206e242239624eb71b2636ab148
+// Compatible with 3.0.1+, for lower versions, remove "woocommerce_" from the first mention on Line 4
+add_filter('woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
+ 
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+	global $woocommerce;
+	
+	ob_start();
+	
+	?>
+	<a class="cart-customlocation" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>"><?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?> - <?php echo $woocommerce->cart->get_cart_total(); ?></a>
+	<?php
+	
+	$fragments['a.cart-customlocation'] = ob_get_clean();
+	
+	return $fragments;
+	
+}
+
+function rsp_enqueue_scripts() {
+    /**
+     * frontend ajax requests.
+     */
+	
+    //wp_register_script('frontend-ajax', get_template_directory_uri() . '/js/frontend-ajax.js', array('jquery_321'), '1.0.0'); // Custom scripts
+    wp_enqueue_script('frontend-ajax', get_template_directory_uri() . '/js/frontend-ajax.js', array('jquery_321'), '1.0.0'); // Custom scripts
+
+    wp_localize_script( 'frontend-ajax', 'frontend_ajax_object',
+        array( 
+            'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'data_var_1' => 'value 1',
+            'data_var_2' => 'value 2',
+        )
+    );
+}
+
+
+function kia_add_script_to_footer(){
+    ?>
+	<script type="text/javascript">
+	    jQuery(document).ready(function($){
+	        $('.quantity').on('click', '.plus', function(e) {
+	            $input = $(this).prev('input.qty');
+	            var val = parseInt($input.val());
+	            $input.val( val+1 ).change();
+	        });
+ 
+	        $('.quantity').on('click', '.minus', 
+	            function(e) {
+	            $input = $(this).next('input.qty');
+	            var val = parseInt($input.val());
+	            if (val > 0) {
+	                $input.val( val-1 ).change();
+	            } 
+	        });
+			
+			/*
+			$("form.cart button[type='submit']").click(function(e) {
+				console.log('submitted')
+				e.preventDefault();
+
+				var product_id = $(this).val();
+				var quantity = $(this).closest('.cart').find('input[name="quantity"]').val();
+				//$('.cart-dropdown-inner').empty();
+
+				$.ajax ({
+		                    url: frontend_ajax_object.ajaxurl,
+		                    type:'POST',
+		                    data:'action=my_wc_add_cart&product_id=' + product_id + '&quantity='+ quantity,
+
+		                    success:function(results) {
+								console.log(results);
+		                        //$('.cart-dropdown-inner').html(results);
+		                    }
+		               });
+		    });
+			console.log( $("form.cart button[type='submit']") )
+			
+			*/
+			
+	    });
+	    </script>
+<?php 
+}
+add_action( 'wp_head', 'kia_add_script_to_footer' );
+
+/* refill the cart page */
+function my_wc_add_cart_ajax() {
+  $product_id = $_POST['product_id'];
+  $variation_id = $_POST['variation_id'];
+  $quantity = $_POST['quantity'];
+
+  if ($variation_id) {
+    WC()->cart->add_to_cart( $product_id, $quantity, $variation_id );
+  } else {
+    WC()->cart->add_to_cart( $product_id, $quantity);
+  }
+
+  $items = WC()->cart->get_cart(); ?>
+
+  <?php foreach($items as $item => $values) { 
+    $_product = $values['data']->post; 
+	
+	
+	?>
+	
+	<?php //echo WC()->cart->get_cart_total(); ?>
+	
+	
+	<!-- inner-cart-container -->
+	<div class="inner-cart-container">
+		
+		<!-- cart-table -->
+		<div class="cart-table">
+			<h1>Cart</h1>
+			
+			<!-- cart-headers-->
+			<div class="cart-headers">
+				<h6 class="product-span">Product</h6>
+				<h6 class="price-span">Price</h6>
+				<h6 class="quantity-span">Quantity</h6>
+				<h6 class="total-span">Total</h6>
+			</div>
+			<!-- /cart-headers-->
+			
+			<!-- cart-items-->
+			<div class="cart-items">
+				
+				<!-- cart-item -->
+				<div class="cart-item">
+					<div class="product-span"><?php echo $_product->post_title; ?></div>
+					<div class="price-span">$0.00</div>
+					<div class="quantity-span">
+						<?php echo $values['quantity']; ?>
+					</div>
+					<div class="total-span"><?php echo get_post_meta($values['product_id'] , '_price', true); ?></div>
+				</div>
+				<!-- /cart-item -->
+				
+			</div>
+			<!-- /cart-items-->
+			
+			<!-- cart-shipping-->
+			<div class="cart-shipping">
+				
+				<h6>Shipping</h6>
+				<div class="shipping-options">
+					<div>
+						<input type="radio" name="shipping[]" />
+						<label>Free Shipping (pending approval)</label>
+					</div>
+					<div>
+						<input type="radio" name="shipping[]" />
+						<label>US Shipping cost</label>
+					</div>
+				</div>
+				
+			</div>
+			<!-- /cart-shipping-->
+			
+			<!-- cart-actions-->
+			<div class="cart-actions">
+				<button class="global-btn update-cart">Update Cart</button>
+				<button class="global-btn checkout">Process to Checkout</button>
+			</div>
+			<!-- /cart-actions-->
+			
+		</div>
+		<!-- /cart-table-->
+		
+	</div>
+	<!-- /inner-cart-container-->
+	
+
+		<?php $variation = $values['variation_id'];
+		if ($variation) {
+			//echo get_the_post_thumbnail( $values['variation_id'], 'thumbnail' ); 
+		} else {
+			//echo get_the_post_thumbnail( $values['product_id'], 'thumbnail' ); 
+		} ?>
+
+
+  <?php } ?>
+
+  <?php die();
+}
+
+add_action('wp_ajax_my_wc_add_cart', 'my_wc_add_cart_ajax');
+add_action('wp_ajax_nopriv_my_wc_add_cart', 'my_wc_add_cart_ajax'); 
+
+// remove all stylesheets for woocommerce
+//add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
+/*------------------------------------*\
 	Actions + Filters + ShortCodes
 \*------------------------------------*/
 
@@ -387,6 +587,7 @@ add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_hea
 add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
+//add_action( 'wp_enqueue_scripts', 'rsp_enqueue_scripts' );
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()

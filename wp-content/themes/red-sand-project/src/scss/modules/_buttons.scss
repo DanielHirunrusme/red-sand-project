@@ -31,3 +31,41 @@ button {
 	img, svg { width:100%; }
 
 }
+
+.global-btn {
+	
+	@extend %h6;
+	padding:1em 1em;
+
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input:focus, input:active, input:hover {
+	
+	outline:none;
+
+}
+
+.minus {
+    border:none;
+    color:#fff;
+    background-color:purple;
+    height:30px;
+    width:30px;
+}
+.plus {
+    border:none;
+    color:#fff;
+    background-color:purple;
+    height:30px;
+    width:30px;
+}
+.qty {
+    border:1px solid purple;
+    color:purple;
+    height:30px;
+     
+}

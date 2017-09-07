@@ -1,6 +1,7 @@
 var scrollContainers = require("modules/scrollContainers"),
 	settings = require("modules/settings"),
-	HTMLhistory = require("html5-history-api");
+	HTMLhistory = require("html5-history-api"),
+	cart = require("modules/cart");
 
 
 var menu = module.exports = {
@@ -48,6 +49,7 @@ var menu = module.exports = {
 			//menu.setCurrentMenuItem('home');
 			scrollContainers.scrollTo('about');
 			HTMLhistory.pushState(null, null, '/');
+			cart.hideCart();
 		},
 		
 		menuLinkClick: function(e){
@@ -64,6 +66,7 @@ var menu = module.exports = {
 			console.log($targ.attr('href'));
 			
 			HTMLhistory.pushState(null, null, $targ.attr('href'));
+			cart.hideCart();
 		},
 		
 		setCurrentMenuItem: function(pageName) {

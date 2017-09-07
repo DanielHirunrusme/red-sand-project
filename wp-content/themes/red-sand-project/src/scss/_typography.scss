@@ -73,7 +73,19 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 	@include line-height($body-line-height); 
 	color:$c-theme;
 	//text-transform:uppercase;
-	letter-spacing:-.02em;
+	letter-spacing:-.02em !important;
+	
+	@include respond-to('mobile'){
+		letter-spacing:-.01em;
+	}
+}
+
+%large-font {
+	@extend %maisonDemi;
+	@include font-size($large-font-sizes); 
+	@include line-height($body-line-height); 
+	//text-transform:uppercase;
+	letter-spacing:-.10em;
 	
 	@include respond-to('mobile'){
 		letter-spacing:-.01em;
@@ -98,7 +110,9 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 }
 
 %h3 {
-	font-family:Arial, Helvetica, sans-serif;
+	@extend %maisonDemi;
+	@include font-size($p-font-sizes); 
+	@include line-height($p-line-height); 
 }
 
 %h6 {

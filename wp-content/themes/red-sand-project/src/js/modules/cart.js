@@ -12,6 +12,14 @@ var cart = module.exports = {
 		toggleCart:function(e){
 			e.preventDefault();
 			$('body').toggleClass('cart-open');
+		},
+		
+		hideCart:function(){
+			
+			if($('body').hasClass('cart-open')) {
+				$('body').removeClass('cart-open');
+			}
+			
 		}
 };
   

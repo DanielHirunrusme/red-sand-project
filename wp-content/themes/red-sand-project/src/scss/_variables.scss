@@ -206,6 +206,13 @@ $h1-line-height: (
   $break-desktop: 1.1
 );
 
+$large-font-sizes: (
+    null  : 1.81vw,
+    $break-ipad :1.81vw,
+    $break-laptop :1.81vw,
+    $break-desktop:1.81vw
+);
+
 
 @mixin line-height($fs-map) {
   @each $fs-breakpoint, $fs-font-size in $fs-map {
