@@ -84,7 +84,15 @@ function rsp_nav()
 		'depth'           => 0,
 		'walker'          => ''
 		)
-	); 
+	);
+}
+
+add_filter( 'nav_menu_link_attributes', 'rsp_menu_atts', 10, 3 );
+function rsp_menu_atts( $atts, $item, $args )
+{
+	$page = $item->type != 'post_type_archive' ? strtolower($item->title) : strtolower($item->object);
+	$atts['data-page'] = $page;
+	return $atts;
 }
 
 // Load HTML5 Blank scripts (header.php)

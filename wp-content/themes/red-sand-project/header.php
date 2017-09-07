@@ -68,7 +68,7 @@
 			
 				<!-- logo -->
 				<div class="nav-logo">
-					<a href="<?php echo home_url(); ?>">
+					<a class="home-link" href="<?php echo home_url(); ?>">
 						<!-- svg logo - toddmotto.com/mastering-svg-use-for-a-retina-web-fallbacks-with-png-script -->
 						<img src="<?php echo get_template_directory_uri(); ?>/img/RSP_Logo.svg" alt="Logo" class="logo-img">
 					</a>

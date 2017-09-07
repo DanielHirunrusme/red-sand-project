@@ -1,9 +1,11 @@
-var scrollContainers = require("modules/scrollContainers");
+var scrollContainers = require("modules/scrollContainers"),
+	settings = require("modules/settings");
 
 
 var menu = module.exports = {
 		$window: $( window ),
 		currentArticle:'about',
+		isScrolling: false,
  	   
 		init: function(){
 			console.log('%c [menu.init]', 'color:blue');
@@ -25,6 +27,8 @@ var menu = module.exports = {
 			var $targ = $(e.currentTarget);
 			var page = $targ.data('page');
 			
+			settings.isScrolling = true;
+			
 			menu.setCurrentMenuItem(page);
 			scrollContainers.scrollTo(page);
 		},
@@ -38,7 +42,8 @@ var menu = module.exports = {
 			
 			$('#left-panel article').each(function(){
 				$this = $(this);
-				if($('#left-panel').scrollTop() > $this.position().top - $(window).height()/2) {
+				if ($('#left-panel .main').scrollTop() > $('#left-panel .main').scrollTop() + $this.position().top - $(window).height()/2) {
+					console.log($this)
 					menu.currentArticle = $this.data('page')
 				}
 			})
@@ -49,10 +54,11 @@ var menu = module.exports = {
 				}
 			});
 			
-			console.log(menu.currentArticle);
+			//console.log(menu.currentArticle);
 		},
 		
 		leftPanelScroll: function(){
+			if (settings.isScrolling) return false;
 			menu.scrollListenMenus();
 		}
 };

@@ -33,10 +33,13 @@
 										
 											$image_size_value = $image_size['value']; 
 											$image_size_value = preg_split("/:/", $image_size_value);
-												
+											$image_size_value = strtolower($image_size_value[0]);
 											?>
-											<img src="<?php echo $image['url']; ?>" class="size-<?= strtolower($image_size_value[0]); ?>" alt="<?php echo $image['alt']; ?>" /> 
-											
+											<?php if($image_size_value != 'large'): ?>
+											<img src="<?php echo $image['url']; ?>" class="size-<?= $image_size_value; ?>" alt="<?php echo $image['alt']; ?>" />
+											<?php else: ?>
+											<div class="image-large-background background-image" style="background-image:url(<?php echo $image['url']; ?>)"></div>
+											<?php endif; ?>
 										<?php endif; ?>
 										
 									</div>

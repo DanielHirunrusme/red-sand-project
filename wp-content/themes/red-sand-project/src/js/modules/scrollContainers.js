@@ -1,4 +1,5 @@
-var mousewheel = require("jquery-mousewheel");
+var mousewheel = require("jquery-mousewheel"),
+	settings = require("modules/settings");
 
 var scrollContainers = module.exports = {
 		$window: $( window ),
@@ -150,7 +151,9 @@ var scrollContainers = module.exports = {
 		
 		scrollTo: function(pageName){
 			var $targ = scrollContainers.$leftScrollPanel.find('article[data-page="'+ pageName +'"]')
-			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targ.position().top}, 400);
+			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targ.position().top}, 400, function(){
+				settings.isScrolling = false;
+			});
 		}
 };
   

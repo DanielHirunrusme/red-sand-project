@@ -10,7 +10,7 @@
 	border-right:2px solid $c-theme;
 	//padding:0 $g-lr-margin;
 	background:$c-white;
-	background:rgba(255, 255, 255, .5);
+	background:rgba(255, 255, 255, .95);
 	z-index:2;
 	//min-width:300px;
 	
@@ -21,7 +21,7 @@
 		padding:0 $g-lr-margin;
 		
 		.page-content {
-			border:1px solid blue;
+			
 			.page-inner-content {
 				
 				margin-bottom:1em;

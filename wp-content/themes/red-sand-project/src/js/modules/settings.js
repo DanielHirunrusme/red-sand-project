@@ -24,6 +24,7 @@ var settings = module.exports = {
 		top: $(window).height() * .04,
 		left: $(window).width() * .03
 	},
+	isScrolling: false,
 	scrollContainer: 0,
 	animationSpeed: 900,
 	scrollPos: undefined,

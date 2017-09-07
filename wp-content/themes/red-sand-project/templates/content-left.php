@@ -22,7 +22,7 @@
 							$post = get_post($i->object_id);
 							setup_postdata($post); 
 							?>
-							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">
+							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>" data-page-title="<?= get_the_title() ?>">
 		
 									
 									<div class="page-inner-content">
@@ -45,7 +45,7 @@
 
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
-							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">		
+							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>" data-page-title="<?= get_the_title() ?>">		
 									
 									
 									<div class="page-inner-content">
@@ -74,12 +74,12 @@
 							
 							?>
 							
-							<article class="article-content article-<?= $i->object ?>" data-article-id="" data-article-title="">
+							<article class="article-content article-<?= $i->object ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 								<?php if($i->object == 'prints'): ?>
 									<div class="article-inner-holder">
 								<?php endif; ?>
 								
-								<?php 
+								<?php
 									
 									$args = array( 'numberposts' => -1, 'post_type' => $i->object );
 									$myposts = get_posts( $args );
