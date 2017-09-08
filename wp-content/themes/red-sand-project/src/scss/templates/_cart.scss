@@ -13,7 +13,7 @@
 	
 	}
 	
-	.cart-open & {
+	.cart-open &, .cart & {
 			
 		* {
 			
@@ -35,22 +35,42 @@
 	
 	z-index:1;
 	
-	.cart-open & {
+	.cart-open &, .cart & {
 		
 		@include transform(translate(0vw, 0));
 	
 	}
 	
-	.inner-cart-container {
-		
+	.woocommerce {
 		margin-left:$left-panel-width-desktop;
 		background:$c-white;
 		min-height:100%;
+	}
+	
+	.woocommerce-cart-form {
 		@include flexbox;
 		@include align-content(center);
+		@include align-items(center);
+		background:$c-white;
+		min-height:100vh;
+	}
+	
+	.inner-cart-container {
+		
+		
+		//@include flexbox;
+		@include align-content(center);
 		border-left:2px solid $c-theme;
+		width:100%;
+		
 		
 		.cart-table {
+			
+			//display:none;
+		
+		}
+		
+		.cart-table, .woocommerce {
 			
 			@include align-self(center);
 			width:$g-lr-margin * 16;
@@ -83,6 +103,85 @@
 			
 			}
 			
+			table.shop_table {
+				
+				border:none !important;
+				margin:0 !important;
+				border-radius:0 !important;
+				
+				td {
+					
+					border:none !important;
+				
+				}
+				
+			}
+			
+			.update-cart {
+				
+				@extend .global-btn;
+				border-radius:0 !important;
+				background:$c-white;
+			
+			}
+			
+			.cart-items {
+				
+				.product-name, .product-price, .product-quantity, .total-span {
+					
+					@include flexbox;
+					@include align-items(center);
+				
+				}
+			
+			}
+			
+			.cart_totals {
+				
+				@extend %p;
+				font-weight:normal;
+				
+				th {
+					
+					padding:0;
+					margin:0;
+				
+				}
+				
+				.cart-subtotal, .order-total {
+					
+					th, .woocommerce-Price-amount {
+						
+						border:none !important;
+						padding:0; 
+						font-weight:normal !important;
+					
+					}
+					
+				}
+				
+				.checkout-button {
+					
+					@extend .global-btn;
+					border-radius:0 !important;
+					background:$c-theme;
+					color:$c-white;
+					margin-top:55px;
+				
+				}
+				
+				h2 {
+					
+					@extend %h6;
+					color:$c-theme;
+					margin-bottom:10px;
+					display:block;
+					
+				}
+				
+				
+			}
+			
 			.cart-item {
 				
 				.quantity-span {
@@ -91,9 +190,14 @@
 					
 					.qty-container {
 						
-						width:50%;
-						min-width:115px;
-						@include flexbox;
+						.quantity {
+							position: relative;
+							left:-.5em;
+							width:50%;
+							min-width:115px;
+							@include flexbox;
+						}
+						
 						
 					
 					}

@@ -19,8 +19,8 @@ jQuery(document).ready(function($){
 			
                     success:function(results) {
 						console.log(results)
-						$('#cart').html(results);
-						$('body').addClass('cart-open');
+						$('#cart').html(results); 
+						$('body').addClass('cart');
 						
 						var newCount = parseInt($('.cart-count').html(), 10) + parseInt(quantity, 10);
 		

@@ -11,13 +11,13 @@ var cart = module.exports = {
 		
 		toggleCart:function(e){
 			e.preventDefault();
-			$('body').toggleClass('cart-open');
+			$('body').toggleClass('cart');
 		},
 		
 		hideCart:function(){
 			
-			if($('body').hasClass('cart-open')) {
-				$('body').removeClass('cart-open');
+			if($('body').hasClass('cart')) {
+				$('body').removeClass('cart');
 			}
 			
 		}
