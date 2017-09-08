@@ -58,6 +58,7 @@
 		margin-left:$left-panel-width-desktop;
 		background:$c-white;
 		min-height:100%;
+		border-left:2px solid $c-theme;
 		
 		.cart-empty-container {
 			
@@ -85,7 +86,7 @@
 		
 		//@include flexbox;
 		@include align-content(center);
-		border-left:2px solid $c-theme;
+		
 		width:100%;
 		
 		

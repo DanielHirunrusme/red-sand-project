@@ -88,11 +88,13 @@
 			&.active {
 				
 				display:block !important;
+				cursor:zoom-in;
 				
 				.print-full-bleed & {
 				
 					margin-left:0 !important;
 					width:100% !important;
+					cursor:zoom-out;
 			
 				}
 				
