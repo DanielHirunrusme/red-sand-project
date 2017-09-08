@@ -1,3 +1,7 @@
+.woocommerce-message {
+	display:none !important;
+}
+
 .cart-link {
 
 	position:absolute;
@@ -97,7 +101,11 @@
 			width:$g-lr-margin * 16;
 			margin-left:$g-lr-margin * 2;
 			
+			.wc-proceed-to-checkout {
+				
+				padding:0;
 			
+			}
 			
 			.cart-headers {
 				

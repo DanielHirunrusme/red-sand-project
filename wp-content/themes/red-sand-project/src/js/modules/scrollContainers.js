@@ -168,7 +168,7 @@ var scrollContainers = module.exports = {
 		scrollTo: function(pageName){
 			settings.page.current = pageName;
 			var $targL = scrollContainers.$leftScrollPanel.find('article[data-page="'+ pageName +'"]')
-			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targL.position().top}, 400, function(){
+			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targL.position().top}, 400, 'linear', function(){
 				settings.isScrolling = false;
 			});
 		},

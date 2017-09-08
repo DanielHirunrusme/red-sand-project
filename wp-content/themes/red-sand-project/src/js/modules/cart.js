@@ -1,4 +1,5 @@
-var settings = require("modules/settings");
+var settings = require("modules/settings"),
+	HTMLhistory = require("html5-history-api");
 
 var cart = module.exports = {
 		$window: $( window ),
@@ -12,6 +13,10 @@ var cart = module.exports = {
 		toggleCart:function(e){
 			e.preventDefault();
 			$('body').toggleClass('cart');
+			if($('body').hasClass('cart')) {
+				HTMLhistory.pushState(null, null, '/cart');
+			}
+			
 		},
 		
 		hideCart:function(){

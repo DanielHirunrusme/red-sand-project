@@ -26,7 +26,17 @@
 		
 		padding:0 $g-lr-margin;
 		
-		.page-content {
+		.page-content, .article-content {
+			
+			@include transition(transition, transform .2s);
+			@include transition-delay(0s);
+			
+			.cart & {
+				
+				@include transform(translate(-$left-panel-width-desktop, 0));
+				@include transition-delay(.4s);
+				
+			}
 			
 			.page-inner-content {
 				

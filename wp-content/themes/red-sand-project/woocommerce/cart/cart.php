@@ -157,7 +157,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			</div>
 			<!-- /cart-items-->
 			
-			<!-- cart-shipping-->
+			<!-- cart-shipping
 			<div class="cart-shipping">
 				
 				<h6>Shipping</h6>
@@ -173,6 +173,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				</div>
 				
 			</div>
+				-->
 			<!-- /cart-shipping-->
 			
 			
@@ -205,7 +206,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 				
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
 
-				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+				<?php //wp_nonce_field( 'woocommerce-cart' ); ?>
+				<?php wp_nonce_field( 'woocommerce-cart', '_wpnonce', false, true ); ?>
 			</div>
 			<!-- /cart-actions-->
 			

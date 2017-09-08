@@ -21,9 +21,9 @@ jQuery(document).ready(function($){
 						//console.log(results)
 						$('#cart').html(results); 
 						$('body').addClass('cart');
-						
+						history.pushState(null, "cart", "/cart");
 						var newCount = parseInt($('.cart-count').html(), 10) + parseInt(quantity, 10);
-		
+						
 						$('.cart-count').html( newCount );
 						$('.cart-link').removeClass('disabled');
                         //$('.cart-dropdown-inner').html(results);
