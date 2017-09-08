@@ -74,6 +74,39 @@
 							
 							?>
 							
+							<?php if($i->object != 'prints'): ?>
+								
+								<?php
+								
+									$args = array( 'numberposts' => -1, 'post_type' => $i->object );
+									$myposts = get_posts( $args );
+									foreach( $myposts as $post ) :
+									  setup_postdata($post); 
+								  
+									  ?>
+								
+								
+								<article class="article-content article-<?= $i->object ?>" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+
+	  									<div class="page-inner-content">
+
+											<h1 class="page-title"><?php the_title(); ?></h1>
+	  										<?php the_content() ?>
+	  									</div>
+									
+								</article>
+								
+									 <?php
+								  
+									endforeach; 
+									wp_reset_postdata(); 
+								
+									?>
+								
+								
+							<?php else: ?>
+							
+							
 							<article class="article-content article-<?= $i->object ?>" <?php if($i->object == 'prints'): ?>data-module-init="prints"<?php endif; ?> data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 								<?php if($i->object == 'prints'): ?>
 									<div class="article-inner-holder">
@@ -118,6 +151,8 @@
 								<?php endif; ?>
 									
 							</article>
+							
+							<?php endif; ?>
 							
 							<?php
 							

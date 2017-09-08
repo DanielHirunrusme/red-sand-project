@@ -109,8 +109,16 @@ function html5blank_header_scripts()
         wp_register_script('jquery_321', get_template_directory_uri() . '/js/lib/jquery-3.2.1.min.js', array(), '3.2.1'); // jQuery
         wp_enqueue_script('jquery_321'); // Enqueue it!
 		
-        wp_register_script('rspvendorscripts', get_template_directory_uri() . '/assets/vendor.min.js', array('jquery_321'), '1.0.0'); // Custom scripts
-        wp_enqueue_script('rspvendorscripts'); // Enqueue it!
+        //wp_register_script('rspvendorscripts', get_template_directory_uri() . '/assets/vendor.min.js', array('jquery_321'), '1.0.0'); // Custom scripts
+        //wp_enqueue_script('rspvendorscripts'); // Enqueue it!
+		
+		
+		
+		wp_register_script('jquery-jvectormap', get_template_directory_uri() . '/js/jquery-jvectormap.js', array(), '3.2.1'); // jQuery
+		wp_enqueue_script('jquery-jvectormap'); // Enqueue it!
+		
+		wp_register_script('jquery-jvectormap-world-merc-en', get_template_directory_uri() . '/js/jquery-jvectormap-world-mill_en.js', array(), '3.2.1'); // jQuery
+		wp_enqueue_script('jquery-jvectormap-world-merc-en'); // Enqueue it!
 
         wp_register_script('rspscripts', get_template_directory_uri() . '/assets/main.min.js', array('jquery_321'), '1.0.0'); // Custom scripts
         wp_enqueue_script('rspscripts'); // Enqueue it!

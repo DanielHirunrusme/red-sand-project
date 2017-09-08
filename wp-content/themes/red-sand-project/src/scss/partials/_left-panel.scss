@@ -11,7 +11,7 @@
 	border-right:2px solid $c-theme;
 	//padding:0 $g-lr-margin;
 	background:$c-white;
-	background:rgba(255, 255, 255, .95);
+	background:rgba(255, 255, 255, .5);
 	z-index:2;
 	
 	
@@ -29,9 +29,14 @@
 		padding:0 $g-lr-margin;
 		
 		.page-content, .article-content {
+			//outline:1px solid blue;
 			
 			@include transition(transition, transform .2s);
 			@include transition-delay(0s);
+			
+			float: left;
+		    clear: left;
+		    width: 100%;
 			
 			.cart & {
 				
@@ -42,7 +47,7 @@
 			
 			.page-inner-content {
 				
-				margin-bottom:1em;
+				//margin-bottom:1em;
 				
 			}
 			

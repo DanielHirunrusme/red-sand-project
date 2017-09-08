@@ -42,6 +42,8 @@
 											<?php endif; ?>
 										<?php endif; ?>
 										
+										
+										
 									</div>
 									<!-- /page-inner-content -->
 								</div>
@@ -100,6 +102,44 @@
 							
 							?>
 							
+							<?php if($i->object != 'prints'): ?>
+								
+								<?php
+								
+									$args = array( 'numberposts' => -1, 'post_type' => $i->object );
+									$myposts = get_posts( $args );
+									foreach( $myposts as $post ) :
+									  setup_postdata($post); 
+								  
+									  ?>
+								
+								<article class="article-content" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+									<div class="inner-content">
+									
+									  
+  									
+	  									<div class="page-inner-content">
+											<?php if(get_the_title() == 'Stats'): ?>
+												<div class="map" data-module-init="map"></div>
+												
+											<?php endif; ?>
+	  									</div>
+									  
+									  
+										 
+									</div>
+								</article>
+								
+									 <?php
+								  
+									endforeach; 
+									wp_reset_postdata(); 
+								
+								?>
+								
+								
+							<?php else: ?>
+							
 							<article class="article-content" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 								<div class="inner-content">
 								<?php
@@ -113,7 +153,14 @@
 									  
   									
   									<div class="page-inner-content">
-  										<?php //the_content() ?>
+										<?php if(get_the_title() == 'Stats'): ?>
+											<div class="map"></div>
+											<script type="text/javascript">
+												$(document).ready(function(){
+													$('.map').vectorMap({map: 'world_mill_en'});
+												});
+											</script>
+										<?php endif; ?>
   									</div>
 									  
 									  
@@ -125,6 +172,8 @@
 								?>
 								</div>
 							</article>
+							
+							<?php endif; ?>
 							
 							<?php
 							

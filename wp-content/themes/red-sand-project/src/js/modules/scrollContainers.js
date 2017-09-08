@@ -84,11 +84,13 @@ var scrollContainers = module.exports = {
 
 			first = first.split("/")[1];
 			
+			settings.page.current = first;
+			
 			if(first != 'cart' && first != 'checkout') {
-				var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ first +'"]').position().top;
+				var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().top;
 				scrollContainers.$leftScrollPanel.stop().scrollTop(st);
 			
-				var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-page="'+ first +'"]').position().left;
+				var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().left;
 				scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
 			}
 			
@@ -119,7 +121,7 @@ var scrollContainers = module.exports = {
 					
 					var percentage = $el.height()/$(window).height();
 					//console.log(percentage);
-					$container.css('width', $(window).width() * percentage );
+					$container.css('width', Math.round( $(window).width() * percentage ) );
 					
 					
 				}
@@ -129,18 +131,49 @@ var scrollContainers = module.exports = {
 			$('#left-panel .article-content').each(function(){
 				
 				$el = $(this);
-				$container = $('#right-panel .article-content[data-page="'+ $el.data('page') +'"]');
+				_id = $(this).data('id')
+				$container = $('#right-panel .article-content[data-id="'+ _id +'"]');
 				
-				console.log($container);
-				//if container height is larger than window, then size right panel proportionally
-				if( $el.height() > $(window).height() ) {
+				//size container based on amount of posts inside
+				
+				if($el.data('page')!= 'prints') {
+					var tw = 0;
+					var totalPosts = $el.find('.page-inner-content').length;
 					
-					var percentage = $el.height()/$(window).height();
-					console.log('article % ' + percentage);
-					$container.css('width', $(window).width() * percentage );
+					$el.find('.page-inner-content').each(function(){
+						var rightContainer = $container.find('.page-inner-content').eq($(this).index());
+						//if post is greater than browser height, then make the right article post proportionally bigger
+						if($(this).height() > $(window).height()) {
+							var percentage = $(this).outerHeight()/$(window).height();
+							
+							//$(rightContainer).css('width', Math.round($(window).width() * percentage) );
+							tw = $(rightContainer).width();
+							$container.css('width', Math.round($(window).width() * percentage));
+						}
+						
+						console.log($(rightContainer).width())
+						
+						
+						
+					})
 					
 					
+					console.log('total width of right parent container ' + tw);
+					
+					
+				} else {
+					//if container height is larger than window, then size right panel proportionally
+					if( $el.height() > $(window).height() ) {
+					
+						var percentage = $el.height()/$(window).height();
+						console.log('article % ' + percentage);
+						$container.css('width', Math.round( $(window).width() * percentage ) );
+					
+					
+					}
 				}
+			
+				
 				
 			});
 			
@@ -205,10 +238,10 @@ var scrollContainers = module.exports = {
 			
 			var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().top;
 			scrollContainers.$leftScrollPanel.stop().scrollTop(st);
+		
+			var sl = scrollContainers.$rightScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().left;
+			scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
 			
-			var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().left;
-			$('#left-panel .main').trigger('scroll')
-			//scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
 		}
 };
   

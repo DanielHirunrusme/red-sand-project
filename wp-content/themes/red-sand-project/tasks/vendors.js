@@ -7,8 +7,6 @@ var vendorScripts = [
 
 
 var vendorScripts = [
-	"./node_modules/barba.js/dist/barba.min.js",
-	"./node_modules/jquery-mousewheel/jquery.mousewheel.js"
 ];
 
 
