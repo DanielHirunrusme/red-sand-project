@@ -12,6 +12,7 @@ var scrollContainers = module.exports = {
 			scrollContainers.sizeRightContainers();
 			scrollContainers.setRightPanel();
 			scrollContainers.setLine();
+			scrollContainers.initScroll();
 			
 			$(window).on('resize', scrollContainers.winResize);
 			
@@ -70,6 +71,29 @@ var scrollContainers = module.exports = {
 				$('#left-panel .main').off( 'scroll', syncRight);
 			});
 				
+			
+		},
+		
+		initScroll: function(){
+			
+			var first = $(location).attr('pathname');
+
+			first.indexOf(1);
+
+			first.toLowerCase();
+
+			first = first.split("/")[1];
+			
+			if(first != 'cart' && first != 'checkout') {
+				var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ first +'"]').position().top;
+				scrollContainers.$leftScrollPanel.stop().scrollTop(st);
+			
+				var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-page="'+ first +'"]').position().left;
+				scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
+			}
+			
+			
+			
 			
 		},
 		

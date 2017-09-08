@@ -2,6 +2,23 @@
 	display:none !important;
 }
 
+.woocommerce-info {
+	
+	border:none;
+	background:none;
+	padding:0;
+	color:$c-black;
+	
+	@extend %p;
+	
+	&:before, &:after {
+		
+		display:none;
+	
+	}
+
+}
+
 .cart-link {
 
 	position:absolute;

@@ -692,6 +692,9 @@ function my_wc_add_cart_ajax() {
 add_action('wp_ajax_my_wc_add_cart', 'my_wc_add_cart_ajax');
 add_action('wp_ajax_nopriv_my_wc_add_cart', 'my_wc_add_cart_ajax'); 
 
+
+
+
 // remove all stylesheets for woocommerce
 //add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
@@ -868,9 +871,9 @@ function create_post_type_html5()
     ));
 	
 	
-    register_taxonomy_for_object_type('category', 'rsp_blog'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('user_tag', 'rsp_blog');
-    register_post_type('rsp_blog', // Register Custom Post Type
+    register_taxonomy_for_object_type('category', 'blog'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('user_tag', 'blog');
+    register_post_type('blog', // Register Custom Post Type
         array(
         'labels' => array(
             'name' => __('Blog', 'Blog'), // Rename these to suit
@@ -878,10 +881,10 @@ function create_post_type_html5()
             'add_new' => __('Add New', 'blog post'),
             'add_new_item' => __('Add New Blog Post', 'Blog'),
             'edit' => __('Edit', 'Blog'),
-            'edit_item' => __('Edit Blog Post', 'rsp_blog'),
-            'new_item' => __('New Blog Post', 'rsp_blog'),
-            'view' => __('View Blog Post', 'rsp_blog'),
-            'view_item' => __('View Blog Post', 'rsp_blog'),
+            'edit_item' => __('Edit Blog Post', 'blog'),
+            'new_item' => __('New Blog Post', 'blog'),
+            'view' => __('View Blog Post', 'blog'),
+            'view_item' => __('View Blog Post', 'blog'),
             'search_items' => __('Search Blog Post', 'wposts'),
             'not_found' => __('No Blog Posts found', 'posts'),
             'not_found_in_trash' => __('No Blog Posts found in Trash', 'posts')

@@ -21,7 +21,7 @@
 							$post = get_post($i->object_id);
 							setup_postdata($post); 
 							?>
-							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">
+							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>">
 								<div class="inner-content">
 									
 									<div class="page-inner-content">
@@ -59,7 +59,7 @@
 
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
-							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page-title="<?= get_the_title() ?>">								<div class="inner-content">
+							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>">								<div class="inner-content">
 							
 									<div class="page-inner-content">
 
