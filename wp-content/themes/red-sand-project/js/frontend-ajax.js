@@ -18,7 +18,7 @@ jQuery(document).ready(function($){
                     data:'action=my_wc_add_cart&product_id=' + product_id + '&quantity='+ quantity,
 			
                     success:function(results) {
-						console.log(results)
+						//console.log(results)
 						$('#cart').html(results); 
 						$('body').addClass('cart');
 						

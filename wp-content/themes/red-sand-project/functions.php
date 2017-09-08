@@ -426,13 +426,13 @@ function kia_add_script_to_footer(){
     ?>
 	<script type="text/javascript">
 	    jQuery(document).ready(function($){
-	        $('.quantity').on('click', '.plus', function(e) {
+	        $('.quantity').off('click').on('click', '.plus', function(e) {
 	            $input = $(this).prev('input.qty');
 	            var val = parseInt($input.val());
 	            $input.val( val+1 ).change();
 	        });
  
-	        $('.quantity').on('click', '.minus', 
+	        $('.quantity').off('click').on('click', '.minus', 
 	            function(e) {
 	            $input = $(this).next('input.qty');
 	            var val = parseInt($input.val());
@@ -441,32 +441,8 @@ function kia_add_script_to_footer(){
 	            } 
 	        });
 			
-			/*
-			$("form.cart button[type='submit']").click(function(e) {
-				console.log('submitted')
-				e.preventDefault();
-
-				var product_id = $(this).val();
-				var quantity = $(this).closest('.cart').find('input[name="quantity"]').val();
-				//$('.cart-dropdown-inner').empty();
-
-				$.ajax ({
-		                    url: frontend_ajax_object.ajaxurl,
-		                    type:'POST',
-		                    data:'action=my_wc_add_cart&product_id=' + product_id + '&quantity='+ quantity,
-
-		                    success:function(results) {
-								console.log(results);
-		                        //$('.cart-dropdown-inner').html(results);
-		                    }
-		               });
-		    });
-			console.log( $("form.cart button[type='submit']") )
-			
-			*/
-			
 	    });
-	    </script>
+	</script>
 <?php 
 }
 add_action( 'wp_head', 'kia_add_script_to_footer' );
@@ -483,97 +459,232 @@ function my_wc_add_cart_ajax() {
     WC()->cart->add_to_cart( $product_id, $quantity);
   }
 
-  $items = WC()->cart->get_cart(); ?>
+	wc_print_notices();
 
-  <?php foreach($items as $item => $values) { 
-    $_product = $values['data']->post; 
+	do_action( 'woocommerce_before_cart' ); ?>
 	
+	<div class="woocommerce">
+	<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+		<?php do_action( 'woocommerce_before_cart_table' ); ?>
 	
-	?>
-	
-	<?php //echo WC()->cart->get_cart_total(); ?>
-	
-	
-	<!-- inner-cart-container -->
-	<div class="inner-cart-container">
+		<!-- inner-cart-container -->
+		<div class="inner-cart-container">
 		
-		<!-- cart-table -->
-		<div class="cart-table">
-			<h1>Cart</h1>
+			<!-- cart-table -->
+			<div class="cart-table">
+				<h1>Cart</h1>
 			
-			<!-- cart-headers-->
-			<div class="cart-headers">
-				<h6 class="product-span">Product</h6>
-				<h6 class="price-span">Price</h6>
-				<h6 class="quantity-span">Quantity</h6>
-				<h6 class="total-span">Total</h6>
-			</div>
-			<!-- /cart-headers-->
+				<!-- cart-headers-->
+				<div class="cart-headers">
+					<h6 class="product-span"><?php _e( 'Product', 'woocommerce' ); ?></h6>
+					<h6 class="price-span"><?php _e( 'Price', 'woocommerce' ); ?></h6>
+					<h6 class="quantity-span"><?php _e( 'Quantity', 'woocommerce' ); ?></h6>
+					<h6 class="total-span"><?php _e( 'Total', 'woocommerce' ); ?></h6>
+				</div>
+				<!-- /cart-headers-->
 			
-			<!-- cart-items-->
-			<div class="cart-items">
+				<!-- cart-items-->
+				<div class="cart-items">
+				<?php do_action( 'woocommerce_before_cart_contents' ); ?>
+			
+			
+				<?php
+				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+
+					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+						$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+						?>
+						<!-- cart-item -->
+						<div class="cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+						
+							<!-- product-name -->
+							<div class="product-span product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
+							
+								<?php
+									if ( ! $product_permalink ) {
+										echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;';
+									} else {
+										echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key );
+									}
+
+									// Meta data
+									echo WC()->cart->get_item_data( $cart_item );
+
+									// Backorder notification
+									if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+										echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
+									}
+								?>
+						
+							</div>
+							<!-- /product-name -->
+						
+							<!-- product-price -->
+							<div class="price-span product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+								<?php
+									echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+								?>
+							</div>
+							<!-- /product-price -->
+						
+							<!-- product-quantity -->
+							<div class="quantity-span product-quantity"  data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+								<div class="qty-container">
+									<?php
+										if ( $_product->is_sold_individually() ) {
+											$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+										} else {
+											$product_quantity = woocommerce_quantity_input( array(
+												'input_name'  => "cart[{$cart_item_key}][qty]",
+												'input_value' => $cart_item['quantity'],
+												'max_value'   => $_product->get_max_purchase_quantity(),
+												'min_value'   => '0',
+											), $_product, false );
+										}
+
+										echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
+									?>
+								</div>
+							</div>
+							<!-- /product-quantity -->
+						
+							<!-- product-subtotal-->
+							<div class="total-span">
+								<?php
+									echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+								?>
+							</div>
+							<!-- /product-subtotal -->
+						
+						
+						</div>
+						<!-- /cart-item -->
+					
+						<?php
+						/*
+							<td class="product-remove">
+							
+									echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
+										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
+										esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
+										__( 'Remove this item', 'woocommerce' ),
+										esc_attr( $product_id ),
+										esc_attr( $_product->get_sku() )
+									), $cart_item_key );
+								?>
+							</td>
+							<td class="product-thumbnail">
+								<?php
+									$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+
+									if ( ! $product_permalink ) {
+										echo $thumbnail;
+									} else {
+										printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail );
+									}
+								?>
+							</td>
+						*/
+						?>
+
+						<?php
+					}
+				}
+				?>	
 				
-				<!-- cart-item -->
-				<div class="cart-item">
-					<div class="product-span"><?php echo $_product->post_title; ?></div>
-					<div class="price-span">$0.00</div>
-					<div class="quantity-span">
-						<div class="qty-container">
-							<input class="plus" type="button" value="-">
-							<input name="qty" class="qty" value="<?php echo $values['quantity']; ?>">
-							<input class="plus" type="button" value="+">
+				</div>
+				<!-- /cart-items-->
+			
+				<!-- cart-shipping-->
+				<div class="cart-shipping">
+				
+					<h6>Shipping</h6>
+					<div class="shipping-options">
+						<div>
+							<input id="free-shipping" type="radio" name="shipping[]" />
+							<label for="free-shipping">Free Shipping (pending approval)</label>
+						</div>
+						<div>
+							<input id="us-shipping" type="radio" name="shipping[]" />
+							<label for="us-shipping">US Shipping cost</label>
 						</div>
 					</div>
-					<div class="total-span"><?php echo get_post_meta($values['product_id'] , '_price', true); ?></div>
+				
 				</div>
-				<!-- /cart-item -->
-				
-			</div>
-			<!-- /cart-items-->
+				<!-- /cart-shipping-->
 			
-			<!-- cart-shipping-->
-			<div class="cart-shipping">
+			
+				<?php do_action( 'woocommerce_cart_contents' ); ?>
+
+
+
+						<?php if ( wc_coupons_enabled() ) { ?>
+							<div class="coupon">
+								<label for="coupon_code"><?php _e( 'Coupon:', 'woocommerce' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>" />
+								<?php do_action( 'woocommerce_cart_coupon' ); ?>
+							</div>
+						<?php } ?>
+
+				<?php do_action( 'woocommerce_after_cart_contents' ); ?>
+			
+				<!-- cart-actions-->
+				<div class="cart-actions">
+					<?php
+						/**
+						 * woocommerce_cart_collaterals hook.
+						 *
+						 * @hooked woocommerce_cross_sell_display
+						 * @hooked woocommerce_cart_totals - 10
+						 */
+					 	do_action( 'woocommerce_cart_collaterals' );
+					?>
 				
-				<h6>Shipping</h6>
-				<div class="shipping-options">
-					<div>
-						<input id="free-shipping" type="radio" name="shipping[]" />
-						<label for="free-shipping">Free Shipping (pending approval)</label>
-					</div>
-					<div>
-						<input id="us-shipping" type="radio" name="shipping[]" />
-						<label for="us-shipping">US Shipping cost</label>
-					</div>
+					<input type="submit" class="button global-btn update-cart" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+				
+					<?php do_action( 'woocommerce_cart_actions' ); ?>
+
+					<?php wp_nonce_field( 'woocommerce-cart' ); ?>
 				</div>
-				
-			</div>
-			<!-- /cart-shipping-->
+				<!-- /cart-actions-->
 			
-			<!-- cart-actions-->
-			<div class="cart-actions">
-				<a href="/update/" class="global-btn update-cart">Update Cart</a>
-				<a href="/checkout/" class="global-btn checkout">Proceed to Checkout</a>
 			</div>
-			<!-- /cart-actions-->
-			
-		</div>
-		<!-- /cart-table-->
+			<!-- /cart-table-->
 		
-	</div>
-	<!-- /inner-cart-container-->
+		</div>
+		<!-- /inner-cart-container-->
+
 	
+		<?php do_action( 'woocommerce_after_cart_table' ); ?>
+	</form>
+	<script type="text/javascript">
+		
+	    jQuery(document).ready(function($){
 
-		<?php $variation = $values['variation_id'];
-		if ($variation) {
-			//echo get_the_post_thumbnail( $values['variation_id'], 'thumbnail' ); 
-		} else {
-			//echo get_the_post_thumbnail( $values['product_id'], 'thumbnail' ); 
-		} ?>
+	        $('.quantity').on('click', '.plus', function(e) {
+				console.log('add')
+	            $input = $(this).prev('input.qty');
+	            var val = parseInt($input.val());
+	            $input.val( val+1 ).change();
+	        });
+ 
+	        $('.quantity').on('click', '.minus', 
+	            function(e) {
+	            $input = $(this).next('input.qty');
+	            var val = parseInt($input.val());
+	            if (val > 0) {
+	                $input.val( val-1 ).change();
+	            } 
+	        });
+			
+	    });
+	</script>
+</div>
+           
 
-
-  <?php } ?>
-
-  <?php die();
+	<?php do_action( 'woocommerce_after_cart' ); ?>
+<?php
 }
 
 add_action('wp_ajax_my_wc_add_cart', 'my_wc_add_cart_ajax');

@@ -122,6 +122,8 @@
 				@extend .global-btn;
 				border-radius:0 !important;
 				background:$c-white;
+				border:1px solid $c-theme;
+				padding:1em 0;
 			
 			}
 			
@@ -167,6 +169,7 @@
 					background:$c-theme;
 					color:$c-white;
 					margin-top:55px;
+					padding:1em 0;
 				
 				}
 				
