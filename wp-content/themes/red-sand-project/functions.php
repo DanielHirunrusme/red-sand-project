@@ -426,13 +426,14 @@ function kia_add_script_to_footer(){
     ?>
 	<script type="text/javascript">
 	    jQuery(document).ready(function($){
-	        $('.quantity').off('click').on('click', '.plus', function(e) {
+			console.log('ready add script')
+	        $('.quantity').on('click', '.plus', function(e) {
 	            $input = $(this).prev('input.qty');
 	            var val = parseInt($input.val());
 	            $input.val( val+1 ).change();
 	        });
  
-	        $('.quantity').off('click').on('click', '.minus', 
+	        $('.quantity').on('click', '.minus', 
 	            function(e) {
 	            $input = $(this).next('input.qty');
 	            var val = parseInt($input.val());

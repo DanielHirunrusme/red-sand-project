@@ -35,6 +35,15 @@
 	
 	z-index:1;
 	
+	h1 {
+		
+		@extend %large-font;
+		margin-bottom:40px;
+		display:block;
+		color:$c-black;
+	
+	}
+	
 	.cart-open &, .cart & {
 		
 		@include transform(translate(0vw, 0));
@@ -45,6 +54,18 @@
 		margin-left:$left-panel-width-desktop;
 		background:$c-white;
 		min-height:100%;
+		
+		.cart-empty-container {
+			
+			@include flexbox;
+			@include justify-content(center);
+			@include align-content(center);
+			min-height:100vh;
+			@include flex-direction(column);
+			text-align:left;
+			margin-left:$g-lr-margin * 2;
+		
+		}
 	}
 	
 	.woocommerce-cart-form {
@@ -76,14 +97,7 @@
 			width:$g-lr-margin * 16;
 			margin-left:$g-lr-margin * 2;
 			
-			h1 {
-				
-				@extend %large-font;
-				margin-bottom:40px;
-				display:block;
-				color:$c-black;
 			
-			}
 			
 			.cart-headers {
 				
