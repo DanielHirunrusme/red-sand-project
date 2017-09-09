@@ -47,6 +47,19 @@
 					color:$c-theme;
 				
 				}
+				
+				.print-author {
+					
+					@extend %h3;
+					color:$c-black;
+					text-transform:uppercase;
+					
+					&:hover {
+						
+						color:$c-theme;
+						
+					}				
+				}
 			
 				.print-thumbnail {
 				

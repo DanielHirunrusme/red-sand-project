@@ -11,7 +11,7 @@
 	border-right:2px solid $c-theme;
 	//padding:0 $g-lr-margin;
 	background:$c-white;
-	background:rgba(255, 255, 255, .5);
+	background:rgba(255, 255, 255, 1);
 	z-index:2;
 	
 	
@@ -30,6 +30,49 @@
 		
 		.page-content, .article-content {
 			//outline:1px solid blue;
+			@include flex-direction(column);
+			@include justify-content(center);
+			
+			.page-inner-content {
+				@include flexbox;
+				@include flex-direction(column);
+				@include justify-content(center);
+				min-height:100vh;
+				width:100%;
+				
+				&.larger-than-browser-height {
+					&:before {
+					
+						
+				
+				
+					}
+				}
+			}
+			
+			&.article-prints {
+				
+				.page-inner-content {
+					
+					min-height:auto;
+				
+				}
+			
+			}
+			
+			&.larger-than-browser-height {
+				
+				
+				
+				&:before {
+					
+					
+				
+				
+				}
+			
+			}
+			
 			
 			@include transition(transition, transform .2s);
 			@include transition-delay(0s);
@@ -54,7 +97,7 @@
 		}
 		
 		article:last-child {
-			margin-bottom:50vh;
+			//margin-bottom:50vh;
 		}
 	}
 }

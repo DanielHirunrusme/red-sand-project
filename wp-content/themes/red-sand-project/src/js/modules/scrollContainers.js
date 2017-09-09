@@ -117,12 +117,18 @@ var scrollContainers = module.exports = {
 				$container = $('#right-panel .page-content').eq( $el.index() );
 				
 				//if container height is larger than window, then size right panel proportionally
+				
+				
+				
 				if( $el.height() > $(window).height() ) {
 					
+					$(this).addClass('larger-than-browser-height');
 					var percentage = $el.height()/$(window).height();
 					//console.log(percentage);
 					$container.css('width', Math.round( $(window).width() * percentage ) );
 					
+					
+				} else {
 					
 				}
 				
@@ -146,9 +152,12 @@ var scrollContainers = module.exports = {
 						if($(this).height() > $(window).height()) {
 							var percentage = $(this).outerHeight()/$(window).height();
 							
+							$(this).addClass('larger-than-browser-height');
 							//$(rightContainer).css('width', Math.round($(window).width() * percentage) );
 							tw = $(rightContainer).width();
 							$container.css('width', Math.round($(window).width() * percentage));
+						} else {
+							$(this).removeClass('larger-than-browser-height');
 						}
 						
 						console.log($(rightContainer).width())

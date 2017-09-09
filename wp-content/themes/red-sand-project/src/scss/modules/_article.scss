@@ -26,10 +26,10 @@
 			
 			&.page-title {
 				
-				@extend %maisonDemi;
+				//@extend %maisonDemi;
 				color:$c-black;
 				margin-bottom:2em;
-				
+				@extend %pageTitle;
 			
 			}
 			
@@ -52,7 +52,7 @@
 		}
 		
 		h3 {
-			
+
 			color:$c-theme;
 		
 		}

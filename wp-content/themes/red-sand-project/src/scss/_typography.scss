@@ -69,11 +69,11 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 }
 
 %h1 {
-	@include font-size($h1-font-sizes); 
-	@include line-height($body-line-height); 
+	@include font-size($subtitle-font-sizes); 
+	@include line-height($h1-line-height); 
 	color:$c-theme;
-	//text-transform:uppercase;
-	letter-spacing:-.02em !important;
+	text-transform:uppercase;
+	//letter-spacing:-.02em !important;
 	
 	@include respond-to('mobile'){
 		letter-spacing:-.01em;
@@ -110,9 +110,10 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 }
 
 %h3 {
-	@extend %maisonDemi;
+	@extend %maisonBook;
 	@include font-size($p-font-sizes); 
 	@include line-height($p-line-height); 
+	font-weight:normal;
 }
 
 %h6 {
@@ -149,6 +150,11 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
   
 }
 
+%pageTitle {
+	@include font-size($title-font-sizes); 
+	@include line-height($h1-line-height); 
+}
+
 p {
 	
 	@extend %p;
@@ -182,6 +188,7 @@ h1, h2{
 
 h3 {
 	@extend %h3;
+	text-transform:uppercase;
 }
 
 h3 time {
