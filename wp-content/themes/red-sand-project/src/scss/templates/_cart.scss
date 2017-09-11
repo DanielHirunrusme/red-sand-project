@@ -2,6 +2,10 @@
 	display:none !important;
 }
 
+.woocommerce-Price-amount.amount {
+	font-weight:normal !important;
+}
+
 .woocommerce-info {
 	
 	border:none;
@@ -17,6 +21,21 @@
 	
 	}
 
+}
+
+.shipping-calculator-button {
+	@extend .global-btn;
+	border:1px solid $c-theme;
+	margin-top:1em;
+	margin-bottom:2em;
+	color:$c-theme;
+	
+	&:hover {
+		
+		background:$c-theme;
+		color:$c-white;
+	
+	}
 }
 
 .cart-link {
@@ -364,4 +383,16 @@
 		
 	}
 
+}
+
+.shipping {
+	h6 {
+		margin:1em 0;
+	}
+}
+
+.cart-subtotal {
+	th {
+		@extend %p;
+	}
 }

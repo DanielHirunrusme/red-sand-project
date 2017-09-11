@@ -132,6 +132,13 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 	text-transform:uppercase;
 	letter-spacing:.025em;
 	
+	&:hover {
+		
+		color:$c-theme;
+	
+	}
+	
+		
 	&::before {
 		
 	    display: block;
@@ -200,10 +207,10 @@ h6 {
 }
 
 p {
-	margin-bottom:$g-h-padding !important;
+	margin-bottom:1em !important;
 	
 	@include respond-to(mobile-portrait) {
-		margin-bottom:$g-h-padding * 2 !important;
+		//margin-bottom:$g-h-padding * 2 !important;
 	}
 	
 	a {
