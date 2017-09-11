@@ -126,7 +126,7 @@
 										<?php if($i->object == 'prints'): ?>
 											
 											<button class="print">
-												<h2><?php the_title() ?></h2>
+												<h3><?php the_title() ?></h3>
 												<div class="print-author"><?php the_field('print_author'); ?></div>
 												<div class="print-thumbnail" data-bg="<?php echo get_field('print_image')['url'] ?>" style="background-image:url(<?php echo get_field('print_image')['url'] ?>)"></div>
 											</button>

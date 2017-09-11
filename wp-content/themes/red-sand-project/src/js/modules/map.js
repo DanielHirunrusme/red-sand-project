@@ -63,7 +63,13 @@ module.exports = function( el ) {
 		
 		function setMap(){
 			$el.vectorMap(wrld);
-			var mapObj = $el.vectorMap('get', 'mapObject');
+			$el.resize();
+			var mapObj = $el.vectorMap('get', 'mapObject').updateSize();
+			
+			setTimeout(function(){
+				mapObj.updateSize();
+			}, 1000);
+			
 		}
 		
 		function dropHeadline() {

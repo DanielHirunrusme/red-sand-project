@@ -41,6 +41,14 @@
 				width:100%;
 				
 				&.larger-than-browser-height {
+					
+					
+					*:first-child {
+					
+						margin-top:9vw;
+				
+					}
+					
 					&:before {
 					
 						
@@ -63,13 +71,6 @@
 			&.larger-than-browser-height {
 				
 				
-				
-				&:before {
-					
-					
-				
-				
-				}
 			
 			}
 			

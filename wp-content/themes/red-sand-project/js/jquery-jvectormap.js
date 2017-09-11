@@ -221,7 +221,7 @@ jvm.$ = jQuery, Array.prototype.indexOf || (Array.prototype.indexOf = function(s
     this.scale = scale, 
 	this.transX = transX, 
 	this.transY = transY;
-	scale = 1;
+	//scale = 1;
 	//transX = window.innerWidth/2 * this.scale;
 	//transY = this.height/4;
 	

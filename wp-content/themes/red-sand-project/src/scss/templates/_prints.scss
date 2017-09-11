@@ -21,7 +21,7 @@
 		
 			@include flexbox;
 			@include flex-direction(column);
-			width:50%;
+			width:50% !important;
 			text-align:left;
 			margin-bottom:0;
 		
@@ -36,6 +36,10 @@
 						
 						color:$c-theme;
 					
+					}
+					
+					.print-author {
+						color:$c-theme;
 					}
 				
 				}

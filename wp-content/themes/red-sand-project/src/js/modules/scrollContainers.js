@@ -84,7 +84,9 @@ var scrollContainers = module.exports = {
 
 			first = first.split("/")[1];
 			
-			settings.page.current = first;
+			settings.page.current = first != '' ? first : 'about';
+			
+			console.log(settings.page.current)
 			
 			if(first != 'cart' && first != 'checkout') {
 				var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().top;
