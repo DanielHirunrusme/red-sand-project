@@ -64,11 +64,9 @@ module.exports = function( el ) {
 		function setMap(){
 			$el.vectorMap(wrld);
 			$el.resize();
-			var mapObj = $el.vectorMap('get', 'mapObject').updateSize();
+			var mapObj = $el.vectorMap('get', 'mapObject');
 			
-			setTimeout(function(){
-				mapObj.updateSize();
-			}, 1000);
+			
 			
 		}
 		

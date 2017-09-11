@@ -92,6 +92,7 @@ function rsp_menu_atts( $atts, $item, $args )
 {
 	$page = $item->type != 'post_type_archive' ? strtolower($item->title) : strtolower($item->object);
 	$atts['data-page'] = $page;
+	$atts['data-url'] = $item->url;
 	return $atts;
 }
 

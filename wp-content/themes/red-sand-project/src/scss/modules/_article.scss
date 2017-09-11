@@ -1,3 +1,9 @@
+.category-content-dummy {
+	height:0 !important;
+	min-height:0 !important;
+	overflow:hidden;
+}
+
 .page-content, .article-content {
 	
 	min-height:100%;
@@ -39,7 +45,7 @@
 		h2 {
 			
 			color:$c-black;
-			margin-bottom:1.5em;
+			margin-bottom:.75em;
 			display:block;
 			margin-top:3em;
 		

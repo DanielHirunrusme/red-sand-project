@@ -22,7 +22,7 @@
 							$post = get_post($i->object_id);
 							setup_postdata($post); 
 							?>
-							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>" data-page-title="<?= get_the_title() ?>">
+							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>" data-page-title="<?= get_the_title() ?>">
 		
 									
 									<div class="page-inner-content">
@@ -45,7 +45,7 @@
 
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
-							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>" data-page-title="<?= get_the_title() ?>">		
+							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>" data-page-title="<?= get_the_title() ?>">		
 									
 									
 									<div class="page-inner-content">
@@ -85,8 +85,8 @@
 								  
 									  ?>
 								
-								
-								<article class="article-content article-<?= $i->object ?>" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+								<article class="article-content category-content-dummy" data-page="<?= $i->object ?>" data-url="<?php echo site_url(); ?>/<?= $i->object ?>/">asdasdsad</article>
+								<article class="article-content article-<?= $i->object ?>" data-url="<?php the_permalink() ?>" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 
 	  									<div class="page-inner-content">
 
@@ -104,10 +104,10 @@
 									?>
 								
 								
-							<?php else: ?>
+							<?php else:  ?>
 							
 							
-							<article class="article-content article-<?= $i->object ?>" <?php if($i->object == 'prints'): ?>data-module-init="prints"<?php endif; ?> data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+							<article class="article-content article-<?= $i->object ?>" data-url="<?= $i->url ?>" <?php if($i->object == 'prints'): ?>data-module-init="prints"<?php endif; ?> data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 								<?php if($i->object == 'prints'): ?>
 									<div class="article-inner-holder">
 								<?php endif; ?>

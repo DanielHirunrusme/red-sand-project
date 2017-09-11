@@ -17,12 +17,14 @@ var menu = module.exports = {
 			
 			$('#left-panel .main').on('scroll', menu.leftPanelScroll);
 			
+			
+			
 			$(window).on('popstate', function(e) {
 
 	          // here can cause data loading, etc.
 
 	          // just post
-			    console.log(location.href)
+			    console.log('location.href ' + location.href)
 				settings.isScrolling = true;
 				
 				if(location.href != '/'){
@@ -41,6 +43,17 @@ var menu = module.exports = {
 			  //scrollContainers.scrollTo(location.href);
 	          //alert("We returned to the page with a link: " + location.href);
 	        });
+			
+			//menu.scrollListenMenus();
+			
+			
+			var str = settings.page.current.toString();
+			
+			$('.menu-item a').each(function(){
+				if(~str.indexOf($(this).data('url'))) {
+					menu.setCurrentMenuItem($(this).data('page'));
+				}
+			});
 		},
 		
 		homeLinkClick: function(e) {
@@ -57,6 +70,7 @@ var menu = module.exports = {
 			console.log('menuLinkClick')
 			var $targ = $(e.currentTarget);
 			var page = $targ.data('page');
+			var url = $targ.data('url');
 			
 			settings.isScrolling = true;
 			
@@ -70,6 +84,12 @@ var menu = module.exports = {
 		},
 		
 		setCurrentMenuItem: function(pageName) {
+			
+			//HTMLhistory.pushState(null, null, $('.menu-item a[data-page="'+ pageName +'"]').attr('href'));
+			
+
+			
+			
 			if(!$('.menu-item a[data-page="'+ pageName +'"]').hasClass('active')) {
 				$('.menu-item a').removeClass('active');
 				$('.menu-item a[data-page="'+ pageName +'"]').addClass('active');
@@ -79,6 +99,7 @@ var menu = module.exports = {
 				}
 			}
 			
+			
 		},
 		
 		scrollListenMenus: function(){
@@ -87,15 +108,27 @@ var menu = module.exports = {
 				$this = $(this);
 				if ($('#left-panel .main').scrollTop() > $('#left-panel .main').scrollTop() + $this.position().top - $(window).height()/2) {
 					//console.log($this)
-					menu.currentArticle = $this.data('page')
+					menu.currentArticle = $this.data('url')
+					
 				}
 			})
 			
-			$('.menu-item a').each(function(){
-				if($(this).data('page') == menu.currentArticle) {
-					menu.setCurrentMenuItem($(this).data('page'));
-				}
-			});
+			if(settings.page.current != menu.currentArticle) {
+				settings.page.current = menu.currentArticle;
+				HTMLhistory.pushState(null, null, settings.page.current);
+				console.log(menu.currentArticle)
+				
+				$('.menu-item a').each(function(){
+					if(~menu.currentArticle.indexOf($(this).data('url'))) {
+						console.log('matches nav parent ' + $(this).data('page'))
+						menu.setCurrentMenuItem($(this).data('page'));
+					}
+				});
+			}
+			
+			
+			
+			
 			
 			//console.log(menu.currentArticle);
 		},

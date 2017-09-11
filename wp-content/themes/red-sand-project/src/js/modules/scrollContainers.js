@@ -83,6 +83,7 @@ var scrollContainers = module.exports = {
 			first.toLowerCase();
 
 			first = first.split("/")[1];
+			/*
 			
 			settings.page.current = first != '' ? first : 'about';
 			
@@ -93,6 +94,18 @@ var scrollContainers = module.exports = {
 				scrollContainers.$leftScrollPanel.stop().scrollTop(st);
 			
 				var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().left;
+				scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
+			}
+			*/
+			
+			settings.page.current = window.location;
+			var str = settings.page.current.toString();
+			
+			if(~str.indexOf("cart") && ~str.indexOf("checkout")) {
+				var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-url="'+ settings.page.current +'"]').position().top;
+				scrollContainers.$leftScrollPanel.stop().scrollTop(st);
+			
+				var sl = scrollContainers.$rightScrollPanel.scrollLeft() + scrollContainers.$rightScrollPanel.find('article[data-url="'+ settings.page.current +'"]').position().left;
 				scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
 			}
 			
@@ -247,11 +260,15 @@ var scrollContainers = module.exports = {
 			scrollContainers.setRightPanel();
 			scrollContainers.setLine();
 			
-			var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().top;
+			console.log('resize ' + settings.page.current)
+			
+			var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-url="'+ settings.page.current +'"]').position().top;
 			scrollContainers.$leftScrollPanel.stop().scrollTop(st);
 		
-			var sl = scrollContainers.$rightScrollPanel.find('article[data-page="'+ settings.page.current +'"]').position().left;
+			var sl = scrollContainers.$rightScrollPanel.find('article[data-url="'+ settings.page.current +'"]').position().left;
 			scrollContainers.$rightScrollPanel.stop().scrollLeft(sl);
+			
+			scrollContainers.moveLine();
 			
 		}
 };

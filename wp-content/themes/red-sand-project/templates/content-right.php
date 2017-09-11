@@ -21,7 +21,7 @@
 							$post = get_post($i->object_id);
 							setup_postdata($post); 
 							?>
-							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>">
+							<article class="page-content" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>">
 								<div class="inner-content">
 									
 									<div class="page-inner-content">
@@ -61,7 +61,7 @@
 
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
-							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-page="<?= strtolower(get_the_title()) ?>">								<div class="inner-content">
+							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>">								<div class="inner-content">
 							
 									<div class="page-inner-content">
 
@@ -112,8 +112,8 @@
 									  setup_postdata($post); 
 								  
 									  ?>
-								
-								<article class="article-content" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+								<article class="article-content category-content-dummy" data-page="<?= $i->object ?>" data-url="<?php echo site_url(); ?>/<?= $i->object ?>/">asdasdsad</article>
+								<article class="article-content" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-url="<?php the_permalink() ?>" data-article-id="" data-article-title="">
 									<div class="inner-content">
 									
 									  
@@ -140,7 +140,7 @@
 								
 							<?php else: ?>
 							
-							<article class="article-content" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
+							<article class="article-content" data-page="<?= $i->object ?>" data-url="<?= $i->url ?>" data-article-id="" data-article-title="">
 								<div class="inner-content">
 								<?php
 									
