@@ -37,8 +37,8 @@
 
 
 %smallText {
-	@include font-size($body-small-font-sizes); 
-	@include line-height($body-small-line-height); 
+	@include font-size($small-font-sizes); 
+	@include line-height($small-line-height); 
 }
 
 html {
@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 }
 
 %body-smaller {
-	@include font-size($body-small-font-sizes); 
-	@include line-height($body-small-line-height); 
+	@include font-size($small-font-sizes); 
+	@include line-height($small-line-height); 
 }
 
 %h1-smaller {
@@ -107,18 +107,18 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 		letter-spacing:-.01em;
 	}
 	
-}
+} 
 
 %h3 {
 	@extend %maisonBook;
-	@include font-size($p-font-sizes); 
-	@include line-height($p-line-height); 
+	@include font-size($h6-font-sizes); 
+	@include line-height($h6-line-height); 
 	font-weight:normal;
 }
 
 %h6 {
 	@extend %globalText;
-	@extend %maisonDemi;
+	@extend %maisonBook;
 	@include font-size($h6-font-sizes); 
 	@include line-height($h6-line-height); 
 	text-transform:uppercase;
@@ -127,8 +127,8 @@ h1, h2, h3, h4, h5, h6, select, label, textarea,  time, button, input {
 
 %pa {
 	@extend %globalText;
-	@include font-size($h6-font-sizes); 
-	@include line-height($h6-line-height); 
+	@include font-size($small-font-sizes); 
+	@include line-height($small-line-height); 
 	text-transform:uppercase;
 	letter-spacing:.025em;
 	

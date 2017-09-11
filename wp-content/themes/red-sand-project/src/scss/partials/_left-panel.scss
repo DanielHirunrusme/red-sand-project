@@ -84,7 +84,8 @@
 			
 			.cart & {
 				
-				@include transform(translate(-$left-panel-width-desktop, 0));
+				@include opacity(.15);
+				//@include transform(translate(-$left-panel-width-desktop, 0));
 				@include transition-delay(.4s);
 				
 			}

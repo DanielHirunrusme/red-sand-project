@@ -14,11 +14,11 @@ module.exports = function( el ) {
 		  zoomOnScroll: false,
 			regionStyle: {
 		      initial: {
-		        fill: '#666'
+		        fill: '#ff7474'
 		      },
 			  hover: {
 			  "fill-opacity": 0.8,
-				fill: '#666',
+				fill: '#ff7474',
 				cursor: 'default'
 			  },
 		      selected: {
