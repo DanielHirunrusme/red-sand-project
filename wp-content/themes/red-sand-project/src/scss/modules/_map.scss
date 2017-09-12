@@ -21,8 +21,7 @@ svg {
 .jvectormap-tip {
     position: absolute;
     display: none;
-    border: solid 1px #CDCDCD;
-    border-radius: 3px;
+    border: solid 1px $c-theme;
     background: #292929;
     color: white;
     font-family: sans-serif, Verdana;

@@ -63,18 +63,25 @@
 							        setup_postdata( $post ); ?>
 							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>">								<div class="inner-content">
 							
-									<div class="page-inner-content">
+									
+									<?php if($image = get_field('featured_image')): ?>
+										<?php
+											
+										$image_size = get_field_object('featured_image_size');
+									
+										$image_size_value = $image_size['value']; 
+										$image_size_value = preg_split("/:/", $image_size_value);
+										$image_size_value = str_replace(' ', '-', $image_size_value);
+										$image_size_value = strtolower($image_size_value[0]);
+											
+										?>
+									<?php endif; ?>	
+									
+									<div class="page-inner-content <?php if($image = get_field('featured_image')): ?><?= $image_size_value; ?><?php endif; ?>" <?php if($image_size_value == 'full-bleed'): ?>style="background-image:url(<?php echo $image['url']; ?>)"<?php endif; ?>>
 
 										<?php if($image = get_field('featured_image')): ?>
-											<?php
-												
-											$image_size = get_field_object('featured_image_size');
-										
-											$image_size_value = $image_size['value']; 
-											$image_size_value = preg_split("/:/", $image_size_value);
-												
-											?>
-											<img src="<?php echo $image['url']; ?>" class="size-<?= strtolower($image_size_value[0]); ?>" alt="<?php echo $image['alt']; ?>" />
+											
+											<img src="<?php echo $image['url']; ?>" class="size-<?= $image_size_value; ?>" alt="<?php echo $image['alt']; ?>" />
 											
 										<?php endif; ?>
 										

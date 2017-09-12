@@ -34,7 +34,9 @@
 					
 					.page-inner-content {
 						
-						margin-left:($g-lr-margin * 7) - $g-gutter;
+						
+						
+						//margin-left:($g-lr-margin * 7) - $g-gutter;
 						
 					}
 				
@@ -54,7 +56,19 @@
 					
 						height:100%;
 						
-						
+						&.full-bleed {
+							
+							background-size:cover;
+							background-position:center center;
+							margin-left:0;
+							
+							img {
+								
+								display:none;
+								
+							}
+							
+						}
 						
 						
 						img.size-small {
