@@ -12,5 +12,9 @@
 		@extend %h6;
 		
 	}
+	
+	.cart & {
+		display:none;
+	}
 
 }

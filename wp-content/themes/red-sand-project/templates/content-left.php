@@ -12,7 +12,7 @@
 					
 					foreach ( $item as $i ) {
 						
-						//print_r($i);
+					
 						
 						if ( $i->type == 'post_type' ) {
 							
@@ -26,10 +26,42 @@
 		
 									
 									<div class="page-inner-content">
-										<?php if(get_field('hide_title') == 0): ?>
+										<?php if( $i->ID == 167 ): ?>
+											
 											<h1 class="page-title"><?php the_title(); ?></h1>
+											
+											<?php
+
+											/*
+											* Loop through a repeater field
+											*/
+									
+											if(get_field('participant')): ?>
+									
+											    <?php while(the_repeater_field('participant')): ?>
+												
+													<?php $name = get_sub_field('participant_name'); ?>
+													<?php $bio = get_sub_field('participant_bio'); ?>
+											
+												
+													<h3><?= $name ?></h3>
+													
+													<p><?= $bio ?></p>
+													
+											    <?php endwhile; ?>
+
+											 <?php endif; ?>
+											
+										<?php else: ?>
+											
+											<?php if(get_field('hide_title') == 0): ?>
+												<h1 class="page-title"><?php the_title(); ?></h1>
+											<?php endif; ?>
+											<?php the_content() ?>
+										
 										<?php endif; ?>
-										<?php the_content() ?>
+										
+										
 									</div>
 	
 							<?php wp_reset_postdata(); ?>

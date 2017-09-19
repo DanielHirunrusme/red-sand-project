@@ -21,14 +21,17 @@
 			position:relative;
 			width:10000vw;
 			height:100%;
+			white-space:nowrap;
 			
 			article {
 				//outline:1px solid blue;
 				position:absolute;
 				width:100vw;
+				//display:inline-block;
+				//float:left;
 				height:100%;
 				top:0;
-			
+				
 				
 				&:first-child {
 					
@@ -45,30 +48,55 @@
 				.inner-content {
 					
 					height:100%;
+					//margin-left:100vw;
 					
 					.page-inner-content {
+						
+						
 						
 						
 						@include flexbox;
 						@include align-items(center);
 						@include justify-content(center);
 						margin-left:($g-lr-margin * 7) - $g-gutter;
-					
+						
 						height:100%;
 						
-						&.full-bleed {
+						//display:inline-block;
+						
+						.page-image {
+							height:100vh;
+							display:inline-block;
+							float:left;
+							@include flexbox;
+							@include justify-content(center);
+							@include align-items(center);
+							@include align-content(center);
+							//@include flex(0 0 auto);
 							
-							background-size:cover;
-							background-position:center center;
-							margin-left:0;
+							&.full-bleed {
 							
-							img {
+								background-size:cover;
+								background-position:center center;
+								margin-left:0;
+								width:$full-bleed-width;
+								height:100vh;
+							
+								img {
 								
-								display:none;
+									display:none;
 								
+								}
+							
 							}
 							
+							img {
+								height:50%;
+							}
+						
 						}
+						
+						
 						
 						
 						img.size-small {

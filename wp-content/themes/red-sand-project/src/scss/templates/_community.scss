@@ -18,3 +18,37 @@
 
 }
 
+.participant-holder {
+	
+	@include flexbox;
+	margin:0 $g-lr-margin;
+	
+	button {
+		
+		margin:0 $g-lr-margin/4;
+		
+		h3 {
+			@include opacity(0);
+			text-align:left;
+			color:$c-theme;
+			margin-top:2px;
+		
+		}
+		
+		&:hover {
+			h3 {
+				@include opacity(1);
+			}
+		}
+				
+		
+		
+		img {
+			width:100%;
+			//width:80%;
+		
+		}
+		
+	}
+
+}

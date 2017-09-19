@@ -806,7 +806,8 @@ function create_post_type_html5()
             'category'
         ) // Add Category and Post Tags support
     ));
-
+	
+	/*
     register_taxonomy_for_object_type('category', 'community'); // Register Taxonomies for Category
     register_taxonomy_for_object_type('post_tag', 'community');
     register_post_type('community', // Register Custom Post Type
@@ -842,6 +843,7 @@ function create_post_type_html5()
             'category'
         ) // Add Category and Post Tags support
     ));
+	*/
 
     register_taxonomy_for_object_type('category', 'learn'); // Register Taxonomies for Category
     register_taxonomy_for_object_type('user_tag', 'learn');
