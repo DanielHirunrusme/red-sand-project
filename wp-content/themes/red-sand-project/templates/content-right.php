@@ -219,6 +219,7 @@
 								if(get_sub_field('image') == '') $disabled = true;
 									
 								?>
+								<article class="article-content category-content-dummy" data-page="<?= $i->object ?>" data-url="<?php echo site_url(); ?>/<?= $i->object ?>/"></article>
 								<article class="article-content <?php if($disabled): ?>disabled<?php endif; ?>" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-url="<?php the_permalink() ?>" data-article-id="" data-article-title="">
 									<div class="inner-content">
 									

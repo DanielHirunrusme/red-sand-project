@@ -247,6 +247,7 @@ var scrollContainers = module.exports = {
 		},
 		
 		scrollTo: function(pageName){
+
 			settings.page.current = pageName;
 			var $targL = scrollContainers.$leftScrollPanel.find('article[data-page="'+ pageName +'"]')
 			scrollContainers.$leftScrollPanel.stop().animate({scrollTop:scrollContainers.$leftScrollPanel.scrollTop() + $targL.position().top}, 400, 'linear', function(){
@@ -259,8 +260,6 @@ var scrollContainers = module.exports = {
 			scrollContainers.sizeRightContainers();
 			scrollContainers.setRightPanel();
 			scrollContainers.setLine();
-			
-			console.log('resize ' + settings.page.current)
 			
 			var st = scrollContainers.$leftScrollPanel.scrollTop() + scrollContainers.$leftScrollPanel.find('article[data-url="'+ settings.page.current +'"]').position().top;
 			scrollContainers.$leftScrollPanel.stop().scrollTop(st);

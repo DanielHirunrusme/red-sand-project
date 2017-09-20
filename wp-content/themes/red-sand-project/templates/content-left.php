@@ -117,7 +117,7 @@
 								  
 									  ?>
 								
-								<article class="article-content category-content-dummy" data-page="<?= $i->object ?>" data-url="<?php echo site_url(); ?>/<?= $i->object ?>/">asdasdsad</article>
+								<article class="article-content category-content-dummy" data-page="<?= $i->object ?>" data-url="<?php echo site_url(); ?>/<?= $i->object ?>/"></article>
 								<article class="article-content article-<?= $i->object ?>" data-url="<?php the_permalink() ?>" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-article-id="" data-article-title="">
 
 	  									<div class="page-inner-content">

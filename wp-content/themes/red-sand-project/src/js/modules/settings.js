@@ -40,7 +40,7 @@ var settings = module.exports = {
 	},
 	isMobile: mobileAndTabletcheck(),
 	page: { 
-		current: $('body').data('page'),
+		current: window.location.href,
 		target: ''
 	},
 	url: $('.ui-page').data('url') ,
