@@ -2,16 +2,44 @@
     width: 100%;
     height: 100%;
     position: relative;
-	margin-left:60px;
+	
+	&.sticky {
+		
+		position:fixed;
+		top:0;
+		left:$left-panel-width + $g-lr-margin;
+		z-index:3;
+		
+		.prints-open & {
+			
+			z-index:1;
+			
+		}
+		
+	}
 }
+
+#right-panel {
+	article[data-page-id="41"] {
+	
+		.page-inner-content {
+		
+			margin-left:$left-panel-width + $g-lr-margin;
+			//padding:0 60px;
+		}
+	
+	}
+}
+
 
 svg {
     touch-action: none;
 }
 
 .jvectormap-container {
-    width: 100%;
+    //width: 100%;
     height: 100%;
+	margin-right:60px;
     position: relative;
     overflow: hidden;
     touch-action: none;

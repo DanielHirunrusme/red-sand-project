@@ -36,6 +36,8 @@ module.exports = function( el ) {
 			$('#right-panel article[data-page="prints"] .page-inner-content').removeClass('active').off('click');
 			$('#right-panel article[data-page="prints"] .page-inner-content').eq(index).addClass('active').on('click', printContainerClick);
 			
+			$('body').addClass('prints-open');
+			
 			scrollContainers.scrollTo('prints');
 			
 			

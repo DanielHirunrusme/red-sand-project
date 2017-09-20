@@ -22,6 +22,7 @@
 	
 	@include flexbox;
 	margin:0 $g-lr-margin;
+	margin-left:$left-panel-width;
 	
 	button {
 		

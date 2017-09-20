@@ -1,8 +1,11 @@
-var settings = require( "modules/settings" );
+var settings = require( "modules/settings" ),
+	scrollContainers = require("modules/scrollContainers");
 	
 module.exports = function( el ) {
 		var $el = $( el ),
-	$window = $( window );
+		$window = $( window ),
+		stickyID = $el.attr('data-sticky-page') != '' ? $el.attr('data-sticky-page') : null;
+		var $stickyContainer = $('#right-panel').find('article[data-page-id="' + stickyID + '"]');
 	
 	
 	var SelectedRegions = ["DZ","AR","AM","AU","AT","AZ","BY","BE","BR","BG","CA","CL","CO","HR","CY","CZ","DK","EG","EE","FI","FR","GE","DE","GH","GR","HU","IN","ID","IQ","IE","IL","IT","KZ","KR","LV","LY","LT","LU","MK","MY","MR","MX","MD","MA","NL","NZ","NO","PK","PS","PH","PL","PT","PR","RO","RU","SA","RS","SG","SK","SI","ZA","ES","LK","SE","CH","TH","TN","TR","UA","GB","US","UY","UZ"];
@@ -59,15 +62,13 @@ module.exports = function( el ) {
 		function init(){
 			console.log('%c [map.init]', 'color:blue')
 			setMap();
+			if(stickyID != null) $(scrollContainers.$rightScrollPanel).on('scroll', mapScroll);
 		}
 		
 		function setMap(){
 			$el.vectorMap(wrld);
 			$el.resize();
 			var mapObj = $el.vectorMap('get', 'mapObject');
-			
-			
-			
 		}
 		
 		function dropHeadline() {
@@ -79,6 +80,39 @@ module.exports = function( el ) {
 			});
 
 		};
+		
+		function mapScroll(){
+			watchMapScroll();
+		}
+		
+		function watchMapScroll(){
+			//console.log($(scrollContainers.$rightScrollPanel).scrollLeft())
+			//console.log($el.closest('article').position().left)
+			
+			if( $(scrollContainers.$rightScrollPanel).scrollLeft() >= $el.closest('article').position().left) {
+				if(!$el.hasClass('sticky')) $el.addClass('sticky');
+			} else {
+				if($el.hasClass('sticky')) $el.removeClass('sticky');
+			}
+			
+			if($(scrollContainers.$rightScrollPanel).scrollLeft() + $(window).width() >= $stickyContainer.position().left) {
+				var xPos = $stickyContainer.position().left - $(scrollContainers.$rightScrollPanel).scrollLeft() - $(window).width();
+				//console.log('xPos ' + xPos)
+				$el.css({
+    					"-webkit-transform":"translate("+xPos+"px,0px)",
+   				 		"-ms-transform":"translate("+xPos+"px,0px)",
+    					"transform":"translate("+xPos+"px,0px)"
+  			  	});​
+			} else {
+				xPos = 0;
+				$el.css({
+    					"-webkit-transform":"translate("+xPos+"px,0px)",
+   				 		"-ms-transform":"translate("+xPos+"px,0px)",
+    					"transform":"translate("+xPos+"px,0px)"
+  			  	});​
+			}
+			
+		}
 		
 
 		

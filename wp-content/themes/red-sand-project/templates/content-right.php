@@ -80,6 +80,9 @@
  											 <?php endif; ?>
 											
  										<?php endif; ?>
+										
+										
+										
 										 
 										</div><!-- /page-inner-content -->
 										
@@ -120,13 +123,15 @@
 
 							foreach( $children as $post ) { 
 							        setup_postdata( $post ); ?>
-							    <article class="page-content" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>">								<div class="inner-content">
+							    <article class="page-content <?php if($post->post_content == ""): ?>disabled<?php endif; ?>" data-page-id="<?= get_the_ID() ?>" data-url="<?php the_permalink() ?>" data-page="<?= strtolower(get_the_title()) ?>">								<div class="inner-content">
 									
 									
 									
 									
 									
 									<div class="page-inner-content">
+										
+									<?php if( $post->ID != 41 ): ?>
 									
 									<?php
 
@@ -152,8 +157,24 @@
 
 									 <?php endif; ?>
 									 
+ 									<?php else: ?>
+										
+											<?php
+												$sticky_page = '';
+												
+												if(get_field('sticky_map')){
+													$sticky_page = get_field('sticky_map');
+													//print_r($sticky_page);
+												}
+											?>
+	  											
+ 											<div class="map" data-sticky-page="<?= $sticky_page->ID ?>" data-module-init="map"></div>
+	  							
+										
+ 									<?php endif; ?>
+									 
 									</div><!-- /page-inner-content -->
-									
+						
 									
 									
 								</div>
@@ -191,7 +212,14 @@
 									  <!--
 								<article class="article-content category-content-dummy" data-page="<?= $i->object ?>" data-url="<?php echo site_url(); ?>/<?= $i->object ?>/">asdasdsad</article>
 										  -->
-								<article class="article-content" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-url="<?php the_permalink() ?>" data-article-id="" data-article-title="">
+								<?php
+									
+								$disabled = false;
+								
+								if(get_sub_field('image') == '') $disabled = true;
+									
+								?>
+								<article class="article-content <?php if($disabled): ?>disabled<?php endif; ?>" data-id="<?php the_id(); ?>" data-page="<?= $i->object ?>" data-url="<?php the_permalink() ?>" data-article-id="" data-article-title="">
 									<div class="inner-content">
 									
 									  	<?php if(get_the_title() != 'Stats'): ?>
@@ -225,10 +253,11 @@
 										</div><!-- /page-inner-content -->
 										
 										<?php else: ?>
-  									
+  										<!--
 	  									<div class="page-inner-content">					
 											<div class="map" data-module-init="map"></div>
 	  									</div>
+										-->
 										
 										<?php endif; ?>
 										

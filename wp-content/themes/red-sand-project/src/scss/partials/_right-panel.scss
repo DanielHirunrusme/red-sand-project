@@ -32,6 +32,9 @@
 				height:100%;
 				top:0;
 				
+				&.disabled {
+					pointer-events:none;
+				}
 				
 				&:first-child {
 					
@@ -58,7 +61,7 @@
 						@include flexbox;
 						@include align-items(center);
 						@include justify-content(center);
-						margin-left:($g-lr-margin * 7) - $g-gutter;
+						//margin-left:($g-lr-margin * 7) - $g-gutter;
 						
 						height:100%;
 						
@@ -79,7 +82,8 @@
 								background-size:cover;
 								background-position:center center;
 								margin-left:0;
-								width:$full-bleed-width;
+								width:100%;
+								//width:$full-bleed-width;
 								height:100vh;
 							
 								img {

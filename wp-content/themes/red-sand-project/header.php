@@ -41,7 +41,7 @@
 		<!-- /title-screen -->
 		
 		<!-- lat-long -->
-		<div id="lat-long">
+		<div id="lat-long" data-module-init="latlong">
 			<span class="latitude">+32.4498893</span>
 			<span class="longitude">-114.6137032</span>
 		</div>
